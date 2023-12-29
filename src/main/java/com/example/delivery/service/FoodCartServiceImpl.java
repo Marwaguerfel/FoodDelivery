@@ -86,6 +86,16 @@ public class FoodCartServiceImpl implements FoodCartService{
 	}
 
 
+	@Override
+	public List<FoodCart> viewall() throws CartException {
+		List<FoodCart> carts = cartRepo.findAll();
+		if(carts.size() > 0) {
+			return carts;
+		}else {
+			throw new CartException("No Carts exists..");
+		}
+	}
+
 
 
 }

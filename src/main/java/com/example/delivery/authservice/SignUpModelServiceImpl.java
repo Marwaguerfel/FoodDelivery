@@ -46,7 +46,7 @@ public class SignUpModelServiceImpl implements SignUpModelService {
 			throw new AuthorizationException("User not LoggedIn...!! Try To Login first..");
 		}
 		
-		if(signUpDetails.getid() == signUp.getid())
+		if(signUpDetails.getId() == signUp.getId())
 			{
 			signUpRep.save(signUp);
 			return signUp;

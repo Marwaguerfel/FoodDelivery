@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit customer</title>
+</head>
+<body>
+<h2>Edit customer</h2>
+<form th:action="@{/customer/update}" th:object="${customer}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <!-- Input fields for customer properties -->
+    <label>Full Name: <input type="text" th:field="*{fullName}" required></label><br>
+    <label>Age: <input type="number" th:field="*{age}" required></label><br>
+    <label>Gender: <input type="text" th:field="*{gender}" required></label><br>
+    <label>Mobile Number: <input type="text" th:field="*{mobileNumber}" required></label><br>
+    <label>Email: <input type="text" th:field="*{email}" required></label><br>
+
+    <!-- Other form fields for customer -->
+        <!-- Address form fields -->
+        <label>Street: <input type="text" th:field="*{address.area}" required></label><br>
+        <label>City: <input type="text" th:field="*{address.city}" required></label><br>
+        <label>State: <input type="text" th:field="*{address.state}" required></label><br>
+        <label>Country: <input type="text" th:field="*{address.country}" required></label><br>
+        <label>Zip Code: <input type="text" th:field="*{address.pincode}" required></label><br>
+
+
+    <!-- Other form fields for customer -->
+
+
+    <button type="submit">Update</button>
+</form>
+</body>
+</html>

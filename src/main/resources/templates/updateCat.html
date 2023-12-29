@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace=" ~{'fragments/html_head' :: html_head}"></head>
+
+<body>
+<header th:replace=" ~{'fragments/html_header' :: html_header}"></header>
+
+<h2>Update Category</h2>
+
+<form th:action="@{/category/update}" th:object="${category}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
+    <label for="name">Category Name:</label>
+    <input type="text" id="name" th:field="*{categoryName}" />
+
+    <!-- Add more fields as needed -->
+
+    <button type="submit">Update Category</button>
+</form>
+
+
+<footer th:replace="fragments/footer::html_footer"></footer>
+</body>
+</html>

@@ -36,6 +36,8 @@ public class Restaurant {
     @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
     private List<Item> itemList = new ArrayList<>();
 
+
+
     public int getid() {
         return id;
     }
@@ -83,4 +85,6 @@ public class Restaurant {
     public void setItemList(List<Item> itemList) {
         this.itemList = itemList;
     }
+
+
 }

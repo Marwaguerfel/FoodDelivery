@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/html_head :: html_head"></head>
+
+<body>
+<header th:replace="fragments/html_header :: html_header(${loginSuccessful})"> </header>
+
+<section>
+    <h2>Popular Dishes</h2>
+
+    <div th:each="dish : ${popularDishes}">
+        <div class="dish">
+            <img th:src="${dish.imageUrl}" alt="Dish Image">
+            <h3 th:text="${dish.name}"></h3>
+            <p th:text="${dish.description}"></p>
+            <p>Price: $<span th:text="${dish.price}"></span></p>
+            <!-- Add a button to order the dish -->
+            <button th:onclick="'orderDish(\'' + ${dish.id} + '\')'">Order Now</button>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>How It Works</h2>
+    <!-- Add content explaining how the food delivery service works -->
+</section>
+
+
+<footer th:replace="fragments/footer::html_footer"></footer>
+</body>
+</html>

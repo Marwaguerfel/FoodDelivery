@@ -11,4 +11,5 @@ public interface SignUpModelRepository extends JpaRepository<SignUpModel, Intege
 	
 	public Optional<SignUpModel> findByUserName(String userName);
 
+
 }

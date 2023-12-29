@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace=" ~{'fragments/html_head' :: html_head}"></head>
+
+<body>
+<header th:replace="/fragments/html_header :: html_header(${loginSuccessful})"> </header>
+<div class = "row">
+    <div class = "col-lg-3">
+        <a th:href = "@{/restaurant/add}" class = "btn btn-primary btn-sm mb-3"> Add Category</a>
+    </div>
+</div>
+<h2>Restaurant List</h2>
+
+<table class ="table table-hover">
+    <thead  class = "form-control-color">
+    <tr>
+        <th scope="col" >ID</th>
+        <th>uuid</th>
+        <th scope="col">Restaurant Name</th>
+        <th scope="col">Manager Name</th>
+        <th scope="col">Contact Number</th>
+        <th scope="col">Address</th>
+        <th scope="col">Actions</th>
+        <!-- Add other necessary columns here -->
+    </tr>
+    </thead>
+    <tr th:each="restaurant : ${restaurants}">
+        <td th:text="${restaurant.getid()}"></td>
+        <td th:text="${loginSuccessful}"></td>
+        <td th:text="${restaurant.restaurantName}"></td>
+        <td th:text="${restaurant.managerName}"></td>
+        <td th:text="${restaurant.contactNumber}"></td>
+        <td>
+            <!-- Display address fields -->
+            Street: <span th:text="${restaurant.address.area}"></span><br/>
+            City: <span th:text="${restaurant.address.city}"></span><br/>
+            <!-- Add other address fields as needed -->
+        </td>
+        <td>
+            <a th:href ="@{/restaurant/edit(restaurantId=${restaurant.getid()})}" class = "btn btn-primary">Update</a>
+            <a th:href="@{/restaurant/view/{restaurantId}(restaurantId=${restaurant.getid()})}" class="btn btn-dark">view</a>
+            <a th:href="@{/restaurant/remove/{id}(id=${restaurant.getid()})}" class="btn btn-danger">Delete</a>
+
+
+        </td>
+        <!-- Add other necessary columns here -->
+    </tr>
+</table>
+<footer th:replace=" ~{'fragments/footer' :: html_footer}"></footer>
+</body>
+</html>

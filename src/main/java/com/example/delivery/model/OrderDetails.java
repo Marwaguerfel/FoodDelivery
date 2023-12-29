@@ -11,7 +11,7 @@ public class OrderDetails {
     private int id;
 
     @Column(name = "Order_Date")
-    private String orderDate; // Assuming you want a String representation
+    private String orderDate;
 
     @Column(name = "Order_Status")
     private String orderStatus;

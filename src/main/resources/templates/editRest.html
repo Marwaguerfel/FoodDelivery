@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{'fragments/html_head' :: html_head}"></head>
+
+<body>
+<header th:replace="~{fragments/html_header :: html_header(${loginSuccessful})}"></header>
+
+
+
+<div class="container mt-5">
+    <h2 class="mb-4">Edit Restaurant</h2>
+
+    <form th:action="@{/restaurant/update}" method="post" th:object="${restaurant}" class="mb-4">
+        <div class="mb-3">
+            <input type="hidden" th:field="*{id}"/>
+
+            <label class="form-label">Restaurant Name:</label>
+            <input type="text" th:field="*{restaurantName}" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Manager Name:</label>
+            <input type="text" th:field="*{managerName}" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contact Number:</label>
+            <input type="text" th:field="*{contactNumber}" class="form-control" />
+        </div>
+
+        <!-- Address fields -->
+        <div class="mb-3">
+            <label class="form-label">Address:</label>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <label class="form-label">Street:</label>
+                    <input type="text" th:field="*{address.area}" class="form-control" />
+                </li>
+                <li class="list-group-item">
+                    <label class="form-label">City:</label>
+                    <input type="text" th:field="*{address.city}" class="form-control" />
+                </li>
+                <li class="list-group-item">
+                    <label class="form-label">State:</label>
+                    <input type="text" th:field="*{address.state}" class="form-control" />
+                </li>
+                <li class="list-group-item">
+                    <label class="form-label">Zip Code:</label>
+                    <input type="text" th:field="*{address.pincode}" class="form-control" />
+                </li>
+            </ul>
+        </div>
+
+
+        <!-- Item List -->
+        <div th:each="item : ${allItems}">
+            <input type="checkbox" th:id="'item_' + ${item.getid()}" th:name="'itemList'" th:value="${item.getid()}"
+                   th:checked="${restaurant.itemList.contains(item)}"/>
+            <label th:for="'item_' + ${item.getid()}" th:text="${item.itemName}"></label><br/>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Restaurant</button>
+    </form>
+</div>
+
+<footer th:replace=" ~{'fragments/footer' :: html_footer}"></footer>
+</body>
+
+</html>

@@ -7,6 +7,7 @@ import com.example.delivery.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -69,5 +70,17 @@ public class RestaurantServiceImpl implements RestaurantService{
 			throw new RestaurantException("No Restaurant found with ID: "+restaurantId);
 		}
 	}
+
+	@Override
+	public List<Restaurant> viewall() throws RestaurantException {
+		List<Restaurant>  restaurants = restRep.findAll();
+		if(restaurants.size() > 0) {
+			return restaurants;
+		}else {
+			throw new RestaurantException("No rest exists..");
+		}
+	}
+
+
 
 }

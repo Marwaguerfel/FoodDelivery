@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace=" ~{'fragments/html_head' :: html_head}"></head>
+
+<body>
+<header th:replace="fragments/html_header :: html_header(${loginSuccessful})"> </header>
+<h2>Add New Restaurant</h2>
+<form action="/restaurant/add" method="post" th:object="${restaurant}">
+    <label>Restaurant Name:<input type="text" th:field="*{restaurantName}" /></label><br />
+    <label>Manager Name: <input type="text" th:field="*{managerName}" /></label><br />
+    <label>Contact Number: <input type="text" th:field="*{contactNumber}" /></label><br />
+
+    <!-- Address fields -->
+    <label>Street:<input type="text" th:field="*{address.area}" /></label><br />
+    <label>City: <input type="text" th:field="*{address.city}" /></label><br />
+    <label>Country: <input type="text" th:field="*{address.country}" /></label><br />
+    <label>State: <input type="text" th:field="*{address.state}" /></label><br />
+    <label>Zip Code: <input type="text" th:field="*{address.pincode}" /></label><br />
+    <div th:each="item : ${allItems}">
+        <input type="checkbox" th:id="'item_' + ${item.getid()}" th:name="'itemList'" th:value="${item.getid()}"
+               th:checked="${restaurant.itemList.contains(item)}"/>
+        <label th:for="'item_' + ${item.getid()}" th:text="${item.itemName}"></label><br/>
+    </div>
+
+
+    <input type="submit" value="Add Restaurant" />
+</form>
+<footer th:replace=" ~{'fragments/footer' :: html_footer}"></footer>
+</body>
+</html>

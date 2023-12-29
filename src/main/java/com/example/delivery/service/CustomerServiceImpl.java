@@ -7,6 +7,7 @@ import com.example.delivery.repository.CustomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -59,6 +60,16 @@ public class CustomerServiceImpl implements CustomerService {
 			return customer;
 		}else {
 			throw new CustomerException("No Customer found with ID: "+customerId);
+		}
+	}
+
+	@Override
+	public List<Customer> viewall() throws CustomerException {
+		List<Customer> customers = customerRep.findAll();
+		if(customers.size() > 0) {
+			return customers;
+		}else {
+			throw new CustomerException("No Customers exists..");
 		}
 	}
 

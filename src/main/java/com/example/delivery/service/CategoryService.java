@@ -15,7 +15,7 @@ public interface CategoryService {
 	
 	public Category viewCategory(Integer categoryId)throws CategoryException;
 	
-	public Category removeCategory(Integer categoryId)throws CategoryException;
+	public Category removeCategory(int categoryId)throws CategoryException;
 	
 	public List<Category> viewAllCategory()throws CategoryException;
 

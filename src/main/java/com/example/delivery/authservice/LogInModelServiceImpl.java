@@ -32,39 +32,30 @@ public class LogInModelServiceImpl implements LogInModelService {
 	
 	@Override
 	public String LogIn(LogInModel loginData) throws AuthorizationException {
-		
-		Optional<SignUpModel> opt = signUpRep.findById(loginData.getid());
-		
-		if(!opt.isPresent())
-		{
-			throw new AuthorizationException("Invalid Login UserId");
+
+		Optional<SignUpModel> opt = signUpRep.findByUserName(loginData.getUserName());
+
+		if (!opt.isPresent()) {
+			throw new AuthorizationException("Invalid Login UserName");
 		}
-		
+
 		SignUpModel newSignUp = opt.get();
-		
-		Integer newSignUpId = newSignUp.getid();
+		Integer newSignUpId = newSignUp.getId();
+
 		Optional<UserSession> currentUserOptional = userSessionRep.findByUserId(newSignUpId);
-		
-		if(currentUserOptional.isPresent()) {
+
+		if (currentUserOptional.isPresent()) {
 			throw new AuthorizationException("User Already LoggedIn with this UserId");
 		}
-		
-		if((newSignUp.getid() == loginData.getid()) && (newSignUp.getPassword().equals(loginData.getPassword())))
-		{
+
+		if (newSignUp.getUserName().equals(loginData.getUserName()) && newSignUp.getPassword().equals(loginData.getPassword()))  {
 			String key = RandomString.getRandomString();
-			
-			UserSession currentUserSession = new UserSession(newSignUp.getid(),key, LocalDateTime.now());
+			UserSession currentUserSession = new UserSession(newSignUp.getId(), key, LocalDateTime.now());
 			userSessionRep.save(currentUserSession);
-			loginDataRep.save(loginData);
-			
 			return currentUserSession.toString();
-			
+		} else {
+			throw new AuthorizationException("Invalid UserName or Password");
 		}
-		else
-			throw new AuthorizationException("Invalid UserName or Password..");
-			
-			
-		
 	}
 
 	@Override

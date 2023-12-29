@@ -16,8 +16,8 @@ public class CategoryServiceImpl implements CategoryService{
 	@Autowired
 	CategoryRepository categoryRepo;
 
-	
-	
+
+
 	
 	@Override
 	public Category addCategory(Category category) throws CategoryException {
@@ -56,7 +56,7 @@ public class CategoryServiceImpl implements CategoryService{
 
 
 	@Override
-	public Category removeCategory(Integer categoryId) throws CategoryException {
+	public Category removeCategory(int categoryId) throws CategoryException {
 		Optional<Category> opt = categoryRepo.findById(categoryId);
 		if(opt.isPresent()) {
 			Category cat = opt.get();

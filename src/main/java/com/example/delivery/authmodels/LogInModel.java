@@ -1,19 +1,15 @@
 package com.example.delivery.authmodels;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "LOGIN_MODEL")
 public class LogInModel {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int id ;
 
 	@Column(name = "User_Name")
 	private String userName;
@@ -21,13 +17,9 @@ public class LogInModel {
 	@Column(name = "Password")
 	private String password;
 
-	public int getid() {
-		return id;
-	}
 
-	public void setid(int id) {
-		this.id = id;
-	}
+
+
 
 	public String getUserName() {
 		return userName;

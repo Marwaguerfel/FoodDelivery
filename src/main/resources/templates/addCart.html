@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{'fragments/html_head' :: html_head}"></head>
+
+<body>
+<header th:replace="/fragments/html_header :: html_header(${loginSuccessful})"> </header>
+
+
+<h2>Add Food Cart</h2>
+
+<form th:action="@{/cart/register}" method="post" th:object="${cart}">
+    <!-- Input fields for cart properties -->
+    <label for="customer">customer:</label>
+    <select id="customer" th:field="*{customer}">
+        <!-- Populate this dropdown with categories -->
+        <option th:each="cust:${customers}" th:value="${cust.getid()}" th:text="${cust.fullName}"></option>
+    </select>
+    <!-- Add other form fields as needed -->
+
+    <button type="submit">Add Cart</button>
+</form>
+
+<footer th:replace="fragments/footer::html_footer"></footer>
+</body>
+
+</html>

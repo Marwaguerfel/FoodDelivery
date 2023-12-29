@@ -27,9 +27,6 @@ public class SignUpModel {
 	@Column(name = "Email", nullable = false, unique = true)
 	private String email;
 
-	public int getid() {
-		return id;
-	}
 
 	public void setid(int id) {
 		this.id = id;
@@ -65,5 +62,9 @@ public class SignUpModel {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Integer getId() {
+		return id;
 	}
 }

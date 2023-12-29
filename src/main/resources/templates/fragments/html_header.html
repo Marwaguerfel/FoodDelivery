@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="html_header(loginSuccessful)">
+    <div class="container-xxl bg-white p-0">
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Mo5ek 3ejja</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0 pe-4">
+                        <a th:href="@{/}" class="nav-item nav-link active">Home</a>
+                        <a th:href="@{/category/viewall}" class="nav-item nav-link">Category</a>
+                        <a th:href="@{/item/viewall}" class="nav-item nav-link">Item</a>
+                        <a th:href="@{/restaurant/viewall}" class="nav-item nav-link">restaurant</a>
+                        <a th:href="@{/customer/viewall}" class="nav-item nav-link">Customer</a>
+                        <a th:href="@{/cart/viewall}" class="nav-item nav-link">Food Cart</a>
+
+
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="booking.html" class="dropdown-item">Booking</a>
+                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+
+                        <!-- Check if user is logged in -->
+                        <div th:if="${loginSuccessful != null}" class="alert alert-success">
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown"><i class="bi bi-person"></i></a>
+                                <div class="dropdown-menu m-0">
+                                    <a href="" class="dropdown-item">UserDetails</a>
+                                    <a th:href="@{/logout(key=${loginSuccessful})}" class="dropdown-item">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- If not logged in, show login button -->
+                        <div th:unless="${loginSuccessful != null}">
+                            <a th:href="@{/login}" class="btn btn-primary py-2 px-4">Login</a>
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
+
+        <div class="container-xxl py-5 bg-dark hero-header mb-5">
+            <div class="container my-5 py-5">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6 text-center text-lg-start">
+                        <h1 class="display-3 text-white animated slideInLeft">Enjoy Our<br>Delicious Meal</h1>
+                        <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                        <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+                        <img class="img-fluid" th:src="@{img/hero.png}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</header>
+    <!-- Navbar & Hero End -->
+</body>
+</html>

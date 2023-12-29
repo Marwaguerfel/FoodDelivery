@@ -1,66 +1,88 @@
 package com.example.delivery.controller;
 
-import com.example.delivery.authexceptions.AuthorizationException;
 import com.example.delivery.authservice.UserSessionService;
+import com.example.delivery.exceptions.ItemException;
 import com.example.delivery.exceptions.RestaurantException;
 import com.example.delivery.model.Restaurant;
+import com.example.delivery.service.ItemService;
 import com.example.delivery.service.RestaurantService;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/restaurant")
 public class RestaurantServiceController {
-	
+
 	@Autowired
-	RestaurantService restService;
-	
+	private RestaurantService restService;
+
 	@Autowired
-	UserSessionService userSessionService;
-	
-	
-	
-	@PostMapping("/add")
-	public ResponseEntity<Restaurant> saveResturant(@Validated @RequestBody Restaurant restaurant) throws RestaurantException {
-		
-		Restaurant newRestaurant = restService.addRestaurant(restaurant);
-		
-		return new ResponseEntity<Restaurant>(newRestaurant ,HttpStatus.CREATED);
-	}
-	
-	
-	@PutMapping("/update")
-	public ResponseEntity<Restaurant> updateResturant(@Validated @RequestBody Restaurant restaurant) throws RestaurantException{
-		
-		Restaurant updatedResturant=restService.updateRestaurant(restaurant);
-		
-		return new ResponseEntity<Restaurant>(updatedResturant,HttpStatus.ACCEPTED);
-	}
-	
-	
-	@DeleteMapping("/remove/{restaurantId}")
-	public ResponseEntity<Restaurant> deleteRestaurant(@PathVariable("restaurantId") Integer restaurantId) throws RestaurantException{
-		Restaurant removedRestaurant = restService.removeRestaurant(restaurantId);
-		return new ResponseEntity<Restaurant>(removedRestaurant, HttpStatus.OK);
-	}
-	
-	
-	@GetMapping("/view/{restaurantId}")
-	public ResponseEntity<Restaurant> getByResturantId(@PathVariable ("restaurantId") Integer restaurantId ,@RequestParam String key) throws RestaurantException, AuthorizationException {
-		
-		Integer sessionId = userSessionService.getUserSessionId(key);
-    	
-    	if(sessionId != null)
-    		{	Restaurant restaurant =restService.viewRestaurant(restaurantId);	
-    			return new ResponseEntity<Restaurant>(restaurant ,HttpStatus.ACCEPTED);
-    		}
-    	else
-    		throw new RestaurantException();
+	private ItemService itemService;
+
+	@Autowired
+	private UserSessionService userSessionService;
+
+	@GetMapping("/add")
+	public String showAddRestaurantForm(Model model) throws ItemException {
+
+		model.addAttribute("restaurant", new Restaurant());
+		model.addAttribute("allItems", itemService.viewAllItems());
+		return "addRest";
 	}
 
+	@PostMapping("/add")
+	public String addRestaurant(@Validated @ModelAttribute Restaurant restaurant) throws RestaurantException {
+		restService.addRestaurant(restaurant);
+		return "redirect:/restaurant/viewall";
+	}
+
+	@GetMapping("/edit")
+	public String editRestaurantPage(
+			Model model,
+			@RequestParam int restaurantId
+	)throws RestaurantException,ItemException{
+			Restaurant restaurant = restService.viewRestaurant(restaurantId);
+		model.addAttribute("allItems", itemService.viewAllItems());
+		model.addAttribute("restaurant", restaurant);
+			return "editRest";
+
+	}
+
+	@PostMapping("/update")
+	public String updateResturant(@ModelAttribute("restaurant") Restaurant restaurant) throws RestaurantException {
+			Restaurant updatedResturant = restService.updateRestaurant(restaurant);
+			return "redirect:/restaurant/viewall";
+	}
+
+
+	@GetMapping("/remove/{restaurantId}")
+	public String deleteRes(@PathVariable("restaurantId") Integer restaurantId) throws RestaurantException {
+		restService.removeRestaurant(restaurantId);
+		return "redirect:/restaurant/viewall";
+	}
+
+	@GetMapping("/view/{restaurantId}")
+	public String viewRestaurantDetails(
+			@PathVariable("restaurantId") Integer restaurantId,
+			Model model
+	) throws RestaurantException {
+
+			Restaurant restaurant = restService.viewRestaurant(restaurantId);
+			model.addAttribute("restaurant", restaurant);
+			return "restDet";
+
+	}
+
+	@GetMapping("/viewall")
+	public String viewAllRestaurants(Model model, @ModelAttribute("loginSuccessful") String loginSuccessful) throws RestaurantException {
+		List<Restaurant> restaurants = restService.viewall();
+		model.addAttribute("restaurants", restaurants);
+		model.addAttribute("loginSuccessful", loginSuccessful);
+		return "restList";
+	}
 }
