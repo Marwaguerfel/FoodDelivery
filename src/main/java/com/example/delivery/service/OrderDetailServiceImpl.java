@@ -93,4 +93,14 @@ public class OrderDetailServiceImpl implements OrderDetailService{
 		}
 	}
 
+	@Override
+	public List<OrderDetails> viewall() throws OrderException {
+		List<OrderDetails>  orders = orderRepo.findAll();
+		if(orders.size() > 0) {
+			return orders;
+		}else {
+			throw new OrderException("No order exists..");
+		}
+	}
+
 }

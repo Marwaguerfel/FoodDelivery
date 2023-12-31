@@ -6,20 +6,25 @@
 <body>
 <header th:replace="/fragments/html_header :: html_header(${loginSuccessful})"> </header>
 
+<div class="container mt-4">
+    <h2 class="mb-4">Add Food Cart</h2>
 
-<h2>Add Food Cart</h2>
+    <form th:action="@{/cart/register}" method="post" th:object="${cart}" class="needs-validation" novalidate>
+        <!-- Input fields for cart properties -->
+        <div class="form-group">
+            <label for="customer">Customer:</label>
+            <select id="customer" th:field="*{customer}" class="form-control">
+                <!-- Populate this dropdown with customers -->
+                <option th:each="cust:${customers}" th:value="${cust.id}" th:text="${cust.fullName}"></option>
+            </select>
+            <div class="invalid-feedback">Please select a customer.</div>
+        </div>
 
-<form th:action="@{/cart/register}" method="post" th:object="${cart}">
-    <!-- Input fields for cart properties -->
-    <label for="customer">customer:</label>
-    <select id="customer" th:field="*{customer}">
-        <!-- Populate this dropdown with categories -->
-        <option th:each="cust:${customers}" th:value="${cust.getid()}" th:text="${cust.fullName}"></option>
-    </select>
-    <!-- Add other form fields as needed -->
+        <!-- Add other form fields as needed -->
 
-    <button type="submit">Add Cart</button>
-</form>
+        <button type="submit" class="btn btn-primary">Add Cart</button>
+    </form>
+</div>
 
 <footer th:replace="fragments/footer::html_footer"></footer>
 </body>

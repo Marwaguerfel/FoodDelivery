@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Order</title>
+</head>
+<body>
+<h1>Create Order</h1>
+<form th:action="@{/order/createOrder/{cartId}(cartId=${order.cart.getid()})}" th:object="${order}" method="post">
+    <div>
+        <label for="orderDate">Order Date:</label>
+        <input type="date" id="orderDate" th:field="*{orderDate}" required>
+    </div>
+    <div>
+        <label for="orderStatus">Order Status:</label>
+        <select id="orderStatus" th:field="*{orderStatus}">
+            <option value="PENDING">Pending</option>
+        </select>
+    </div>
+    <button type="submit">Create Order</button>
+</form>
+</body>
+</html>

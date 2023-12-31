@@ -1,31 +1,77 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace=" ~{'fragments/html_head' :: html_head}"></head>
+<head th:replace=" ~{'fragments/html_head' :: html_head}">
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 
 <body>
-<header th:replace="fragments/html_header :: html_header(${loginSuccessful})"> </header>
-<h2>Add New Restaurant</h2>
-<form action="/restaurant/add" method="post" th:object="${restaurant}">
-    <label>Restaurant Name:<input type="text" th:field="*{restaurantName}" /></label><br />
-    <label>Manager Name: <input type="text" th:field="*{managerName}" /></label><br />
-    <label>Contact Number: <input type="text" th:field="*{contactNumber}" /></label><br />
-
-    <!-- Address fields -->
-    <label>Street:<input type="text" th:field="*{address.area}" /></label><br />
-    <label>City: <input type="text" th:field="*{address.city}" /></label><br />
-    <label>Country: <input type="text" th:field="*{address.country}" /></label><br />
-    <label>State: <input type="text" th:field="*{address.state}" /></label><br />
-    <label>Zip Code: <input type="text" th:field="*{address.pincode}" /></label><br />
-    <div th:each="item : ${allItems}">
-        <input type="checkbox" th:id="'item_' + ${item.getid()}" th:name="'itemList'" th:value="${item.getid()}"
-               th:checked="${restaurant.itemList.contains(item)}"/>
-        <label th:for="'item_' + ${item.getid()}" th:text="${item.itemName}"></label><br/>
-    </div>
-
-
-    <input type="submit" value="Add Restaurant" />
-</form>
+<header th:replace="fragments/html_header :: html_header(${loginSuccessful})"></header>
+<div class="container mt-4">
+    <h2>Add New Restaurant</h2>
+    <form action="/restaurant/add" method="post" th:object="${restaurant}" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="restaurantName">Restaurant Name:</label>
+            <input type="text" th:field="*{restaurantName}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="managerName">Manager Name:</label>
+            <input type="text" th:field="*{managerName}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="contactNumber">Contact Number:</label>
+            <input type="text" th:field="*{contactNumber}" class="form-control" required>
+        </div>
+        <!-- Address fields -->
+        <div class="form-group">
+            <label for="street">Street:</label>
+            <input type="text" th:field="*{address.area}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" th:field="*{address.city}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text" th:field="*{address.country}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="state">State:</label>
+            <input type="text" th:field="*{address.state}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="zipCode">Zip Code:</label>
+            <input type="text" th:field="*{address.pincode}" class="form-control" required>
+        </div>
+        <!-- Checkbox for items -->
+        <div class="form-group">
+            <label>Items:</label>
+            <div th:each="item : ${allItems}">
+                <div class="form-check">
+                    <input type="checkbox" th:id="'item_' + ${item.getid()}" th:name="'itemList'" th:value="${item.getid()}"
+                           th:checked="${restaurant.itemList.contains(item)}" class="form-check-input"/>
+                    <label class="form-check-label" th:for="'item_' + ${item.getid()}" th:text="${item.itemName}"></label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Restaurant</button>
+    </form>
+</div>
 <footer th:replace=" ~{'fragments/footer' :: html_footer}"></footer>
+
+<!-- Add Bootstrap JS and Popper.js scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
 </body>
+
 </html>

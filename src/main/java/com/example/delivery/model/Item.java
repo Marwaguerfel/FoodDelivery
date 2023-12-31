@@ -1,13 +1,6 @@
 package com.example.delivery.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ITEM")
@@ -28,6 +21,18 @@ public class Item {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private FoodCart cart; // Use FoodCart type instead of int for the association
+
+    public FoodCart getCart() {
+        return cart;
+    }
+
+    public void setCart(FoodCart cart) {
+        this.cart = cart;
+    }
 
     public int getid() {
         return id;

@@ -30,6 +30,7 @@
                     <a th:href="@{/customer/edit(customerId=${customer.getid()})}" class="btn btn-primary btn-sm">Update</a>
                     <a th:href="@{/customer/view/{customerId}(customerId=${customer.getid()})}" class="btn btn-dark btn-sm">View</a>
                     <a th:href="@{/customer/remove/{customerId}(customerId=${customer.getid()})}" class="btn btn-danger btn-sm">Delete</a>
+                    <a th:href="@{/order/viewbycustomer/{customerId}(customerId=${customer.getid()})}" class="btn btn-danger btn-sm">Your Order</a>
                 </div>
             </div>
         </div>

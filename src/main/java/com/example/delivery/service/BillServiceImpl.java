@@ -74,7 +74,7 @@ public class BillServiceImpl implements BillService{
 
 
 	@Override
-	public String generateTotalBillById(Integer customerId) throws ItemException, CustomerException {
+	public Double generateTotalBillById(Integer customerId) throws ItemException, CustomerException {
 		Optional<Customer> cOpt = cusRepo.findById(customerId);
 		if(cOpt.isPresent()) {
 			Customer customer = cOpt.get();
@@ -87,7 +87,7 @@ public class BillServiceImpl implements BillService{
 					total += (item.getCost()*item.getQuantity()); 
 				}
 				
-				return "The total bill for "+customer.getFullName()+" is "+total;
+				return total;
 				
 			}else {
 				throw new ItemException("No order items found for "+customer.getFullName());

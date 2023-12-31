@@ -9,7 +9,6 @@ import com.example.delivery.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,14 +65,10 @@ public class FoodCartServiceImpl implements FoodCartService{
 			
 			Optional<Item> iOpt = itemRepo.findById(itemId);
 			if(iOpt.isPresent()) {
-				
 				FoodCart cart = cOpt.get();
 				Item item = iOpt.get();
-				List<Item> list = new ArrayList<>();
-				list.addAll(cart.getItemList());
-				list.add(item);
-				cart.setItemList(list);
-				
+				cart.getItemList().add(item);
+				cartRepo.save(cart);
 				return cart;
 				
 			}else {

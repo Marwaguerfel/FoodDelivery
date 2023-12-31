@@ -16,7 +16,7 @@ public interface BillService {
 	
 	public Bill viewBill(Integer billId)throws BillException;
 	
-	public String generateTotalBillById(Integer customerId)throws ItemException, CustomerException;
+	public Double generateTotalBillById(Integer customerId)throws ItemException, CustomerException;
 	
 
 }

@@ -4,7 +4,7 @@
 <head th:replace=" ~{'fragments/html_head' :: html_head}"></head>
 
 <body>
-<header th:replace=" ~{'fragments/html_header' :: html_header}"></header>
+<header th:replace="fragments/html_header :: html_header(${loginSuccessful})"> </header>
 
 <h2>Edit Item</h2>
 

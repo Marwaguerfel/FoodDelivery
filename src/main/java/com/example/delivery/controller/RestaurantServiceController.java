@@ -47,8 +47,8 @@ public class RestaurantServiceController {
 			@RequestParam int restaurantId
 	)throws RestaurantException,ItemException{
 			Restaurant restaurant = restService.viewRestaurant(restaurantId);
-		model.addAttribute("allItems", itemService.viewAllItems());
-		model.addAttribute("restaurant", restaurant);
+			model.addAttribute("allItems", itemService.viewAllItems());
+			model.addAttribute("restaurant", restaurant);
 			return "editRest";
 
 	}

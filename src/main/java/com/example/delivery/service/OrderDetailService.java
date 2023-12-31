@@ -20,5 +20,7 @@ public interface OrderDetailService {
 	public OrderDetails viewOrder(Integer orderId)throws OrderException;
 	
 	public List<Item> viewAllOrdersByCustomer(Integer customerId)throws OrderException, CustomerException;
+	public List<OrderDetails> viewall()throws OrderException;
+
 
 }

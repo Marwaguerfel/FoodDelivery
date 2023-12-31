@@ -15,7 +15,7 @@
 
     <div class = "row">
         <div class = "col-lg-3">
-            <a th:href = "@{/cart/add}" class = "btn btn-primary btn-sm mb-3"> Add cart</a>
+            <a th:href = "@{/cart/register}" class = "btn btn-primary btn-sm mb-3"> Add cart</a>
         </div>
     </div>
     <div class="container mt-5">
@@ -39,8 +39,10 @@
                             <li> <small  th:each="item : ${cart.itemList}" th:text="${item.category.categoryName}"></small></li>
                         </ul>
                         <div class="mt-3">
-                            <a th:href="@{/cart/edit(id=${cart.getid()})}" class="btn btn-primary me-2">Edit</a>
+                            <a th:href="@{/cart/item/{cartId}(cartId=${cart.getid()})}" class="btn btn-primary me-2">Add Item to Cart</a>
                             <a th:href="@{/cart/remove/{id}(id=${cart.getid()})}" class="btn btn-danger">Delete</a>
+                            <a th:href="@{/order/createOrder/{cartId}(cartId=${cart.getid()})}" class="btn btn-info">Order</a>
+
                         </div>
                     </div>
                 </div>
