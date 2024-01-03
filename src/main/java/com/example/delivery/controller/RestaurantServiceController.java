@@ -38,7 +38,7 @@ public class RestaurantServiceController {
 	@PostMapping("/add")
 	public String addRestaurant(@Validated @ModelAttribute Restaurant restaurant) throws RestaurantException {
 		restService.addRestaurant(restaurant);
-		return "redirect:/restaurant/viewall";
+		return "redirect:admin/restaurants";
 	}
 
 	@GetMapping("/edit")

@@ -19,7 +19,12 @@ public class Item {
     @Column(name = "Cost")
     private Double cost;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @ManyToOne
@@ -74,5 +79,12 @@ public class Item {
         this.category = category;
     }
 
+    public Restaurant getRestaurant() {
+
+        return restaurant;
+    }
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 
 }
