@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Bill</title>
+</head>
+<body>
+<h1>Create Bill</h1>
+<form th:action="@{/bill/add}" th:object="${bill}" method="post">
+    <input type="hidden" th:field="*{billId}" >
+
+    <div>
+        <label for="billDate">Bill Date:</label>
+        <input type="text" id="billDate" th:field="*{billDate}" readonly="readonly">
+    </div>
+    <div>
+        <label for="totalCost">Total Cost:</label>
+        <input type="number" id="totalCost" th:field="*{totalCost}" readonly="readonly">
+    </div>
+    <div>
+        <label for="totalItem">Total Items:</label>
+        <input type="number" id="totalItem" th:field="*{totalItem}" readonly="readonly">
+    </div>
+    <div>
+        <h4>Order Details</h4>
+        <table>
+            <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Cost</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <button type="submit">Create Bill</button>
+</form>
+</body>
+</html>

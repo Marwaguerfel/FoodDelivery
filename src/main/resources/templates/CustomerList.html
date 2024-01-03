@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace=" ~{'fragments/html_head' :: html_head}"></head>
+
+<body>
+<header th:replace="/fragments/html_header :: html_header(${loginSuccessful})"> </header>
+
+
+<div class="container mt-4">
+    <div class = "row">
+        <div class = "col-lg-3">
+            <a th:href = "@{/customer/add}" class = "btn btn-primary btn-sm mb-3"> Add Customer</a>
+        </div>
+    </div>
+
+    <h2>Customer List</h2>
+    <div class="row">
+        <div th:each="customer : ${customers}" class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${customer.fullName}"></h5>
+                    <p class="card-text">
+                        <strong>ID:</strong> <span th:text="${customer.getid()}"></span><br/>
+                        <strong>Age:</strong> <span th:text="${customer.age}"></span><br/>
+                        <strong>Gender:</strong> <span th:text="${customer.gender}"></span><br/>
+                        <strong>Mobile Number:</strong> <span th:text="${customer.mobileNumber}"></span><br/>
+                        <strong>Email:</strong> <span th:text="${customer.email}"></span>
+                    </p>
+                    <a th:href="@{/customer/edit(customerId=${customer.getid()})}" class="btn btn-primary btn-sm">Update</a>
+                    <a th:href="@{/customer/view/{customerId}(customerId=${customer.getid()})}" class="btn btn-dark btn-sm">View</a>
+                    <a th:href="@{/customer/remove/{customerId}(customerId=${customer.getid()})}" class="btn btn-danger btn-sm">Delete</a>
+                    <a th:href="@{/order/viewbycustomer/{customerId}(customerId=${customer.getid()})}" class="btn btn-danger btn-sm">Your Order</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and Popper.js scripts -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+<footer th:replace=" ~{'fragments/footer' :: html_footer}"></footer>
+</body>
+</html>

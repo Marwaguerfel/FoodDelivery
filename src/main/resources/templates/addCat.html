@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{'fragments/html_head' :: html_head}"></head>
+
+<body>
+<header th:replace="/fragments/html_header :: html_header(${loginSuccessful})"> </header>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Add Category</h2>
+
+    <form th:action="@{/category/add}" th:object="${category}" method="post" class="mb-4">
+        <div class="mb-3">
+            <label for="name" class="form-label">Category Name:</label>
+            <input type="text" id="name" th:field="*{categoryName}" class="form-control" />
+        </div>
+
+        <!-- Add more fields as needed -->
+
+        <button type="submit" class="btn btn-primary">Add Category</button>
+    </form>
+</div>
+
+<footer th:replace="fragments/footer::html_footer"></footer>
+</body>
+
+</html>

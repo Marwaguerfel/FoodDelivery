@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bill Details</title>
+</head>
+<body>
+
+<h2>Bill Details</h2>
+
+<div>
+    <p><strong>Bill ID:</strong> <span th:text="${bill.id}"></span></p>
+    <p><strong>Bill Date:</strong> <span th:text="${bill.billDate}"></span></p>
+    <p><strong>Total Cost:</strong> <span th:text="${bill.totalCost}"></span></p>
+    <p><strong>Total Item:</strong> <span th:text="${bill.totalItem}"></span></p>
+
+
+</div>
+
+</body>
+</html>

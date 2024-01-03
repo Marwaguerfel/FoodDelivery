@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace=" ~{'fragments/html_head' :: html_head}"></head>
+
+<body>
+<header th:replace="fragments/html_header :: html_header(${loginSuccessful})"> </header>
+<div class="container">
+    <h1 class="mb-4">Orders for Customer</h1>
+    <div class="list-group">
+            <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Order Items</h5>
+                <ul class="list-unstyled">
+                    <li th:each="order : ${orders}">
+                        <span th:text="${order.itemName}">Item Name</span>
+                        <span th:text="'$'+ ${order.cost}">Cost</span>
+                    </li>
+                </ul>
+            </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/footer::html_footer"></footer>
+</body>
+</html>

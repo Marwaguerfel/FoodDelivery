@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace=" ~{'fragments/html_head' :: html_head}"></head>
+
+<body>
+<header th:replace="/fragments/html_header :: html_header(${loginSuccessful})"> </header>
+
+<div class="container mt-4">
+    <h2 class="fs-2 text-body-emphasis">Customer Detail</h2>
+
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="col">
+            <div class="feature card">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    <i class="bi bi-person"></i>
+                </div>
+                <div class="card-body">
+                    <h3 class="fs-2 text-body-emphasis">Customer Details</h3>
+                    <p>ID: <span th:text="${customer.getid()}"></span></p>
+                    <p>Full Name: <span th:text="${customer.fullName}"></span></p>
+                    <p>Age: <span th:text="${customer.age}"></span></p>
+                    <p>Gender: <span th:text="${customer.gender}"></span></p>
+                    <p>Mobile Number: <span th:text="${customer.mobileNumber}"></span></p>
+                    <p>Email: <span th:text="${customer.email}"></span></p>
+
+                    <!-- Address details -->
+                    <h4 class="fs-4 text-body-emphasis">Address</h4>
+                    <p>Street: <span th:text="${customer.address.area}"></span></p>
+                    <p>City: <span th:text="${customer.address.city}"></span></p>
+                    <p>State: <span th:text="${customer.address.state}"></span></p>
+                    <p>Zip Code: <span th:text="${customer.address.pincode}"></span></p>
+
+                    <!-- Food Cart details - Add your specific details here -->
+
+                    <!-- Edit and Delete links -->
+                    <p class="mt-3">
+                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace=" ~{'fragments/footer' :: html_footer}"></footer>
+</body>
+</html>

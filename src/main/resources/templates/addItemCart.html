@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace=" ~{'fragments/html_head' :: html_head}"></head>
+
+<body>
+<header th:replace="fragments/html_header :: html_header(${loginSuccessful})"> </header>
+<h1>Add Item</h1>
+
+
+<form th:action="@{/cart/item/{cartId}(cartId=${cartId})}" method="post">
+    <div>
+        <label for="id">Item ID:</label>
+        <input type="number" id="id" name="id" required>
+    </div>
+
+    <button type="submit">Add Item</button>
+</form>
+<footer th:replace=" ~{'fragments/footer' :: html_footer}"></footer>
+</body>
+</html>
