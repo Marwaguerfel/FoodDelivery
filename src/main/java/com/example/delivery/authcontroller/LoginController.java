@@ -2,6 +2,7 @@ package com.example.delivery.authcontroller;
 
 import com.example.delivery.authexceptions.AuthorizationException;
 import com.example.delivery.authmodels.LogInModel;
+import com.example.delivery.authmodels.SignUpModel;
 import com.example.delivery.authservice.LogInModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ public class LoginController {
 	@GetMapping("/login")
 	public String loginPage(Model model) {
 		model.addAttribute("loginData", new LogInModel());
-		return "loginPage";
+		return "auth/login";
 	}
 	@PostMapping("/login")
 	public String loginHandler(@ModelAttribute("loginData") LogInModel loginData, RedirectAttributes redirectAttributes) throws AuthorizationException {
@@ -29,7 +30,7 @@ public class LoginController {
 			return "redirect:/";
 		} else {
 			redirectAttributes.addFlashAttribute("error", "Invalid username or password");
-			return "redirect:/login";
+			return "redirect:/auth/login";
 		}
 	}
 
@@ -41,8 +42,8 @@ public class LoginController {
 		} catch (AuthorizationException e) {
 			redirectAttributes.addFlashAttribute("error", "Error during logout: " + e.getMessage());
 		}
-		return "redirect:/";
+		return "redirect:auth/login";
 	}
-	
+
 
 }

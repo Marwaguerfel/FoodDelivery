@@ -12,6 +12,6 @@ public class HomeController {
     @GetMapping("/")
     public String index(Model model, @ModelAttribute("loginSuccessful") String loginSuccessful) {
         model.addAttribute("loginSuccessful", loginSuccessful);
-        return "index";
+        return "user/index";
     }
 }

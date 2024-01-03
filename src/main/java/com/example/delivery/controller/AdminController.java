@@ -123,7 +123,7 @@ public class AdminController {
             model.addAttribute("item", item); // To repopulate the form with the submitted data
             model.addAttribute("categories", catSer.viewAllCategory());
             model.addAttribute("restaurants", restService.viewall());
-            return "admin/itemManagement/add-ite";
+            return "admin/itemManagement/add-item";
         } catch (ItemException e) {
             throw new RuntimeException(e);
         }
@@ -140,7 +140,7 @@ public class AdminController {
         Item item=itemService.viewItem(id);
         model.addAttribute("item", item);
         model.addAttribute("categories", catSer.viewAllCategory()); // Assuming catService is your category service
-        return "edit-item" ;
+        return "admin/itemManagement/edit-item" ;
     }
 
     @PostMapping("/updateItem")
@@ -172,7 +172,7 @@ public class AdminController {
 
 
 
-    //category
+    //category amnagement
     @GetMapping("/addCategory")
     public String addCategory(Model model)  {
         model.addAttribute("category", new Category());
@@ -192,8 +192,8 @@ public class AdminController {
         model.addAttribute("categories", categories);
         return "admin/categories/list-categories";
     }
-    @GetMapping("/edit")
-    public String getEditPage(
+    @GetMapping("/editCategory")
+    public String getEditCategory(
             Model model,
             RedirectAttributes attributes,
             @RequestParam int categoryId
@@ -202,16 +202,16 @@ public class AdminController {
         try {
             Category category = catSer.viewCategory(categoryId);
             model.addAttribute("category", category);
-            page = "updateCat";
+            page = "admin/categories/edit-category";
         } catch (CategoryException e) {
             e.printStackTrace();
             attributes.addAttribute("message", e.getMessage());
-            page = "redirect:viewall";
+            page = "redirect:admin/categories/list-categories";
         }
         return page;
     }
 
-    @PostMapping("/update")
+    @PostMapping("/editCategory")
     public String updateCategory(
             @ModelAttribute Category category,
             RedirectAttributes attributes
@@ -223,18 +223,18 @@ public class AdminController {
             e.printStackTrace();
             attributes.addAttribute("message", e.getMessage());
         }
-        return "redirect:viewall";
+        return "redirect:list-categories";
     }
 
 
-    @GetMapping("/view/{categoryId}")
+    @GetMapping("/viewCategory/{categoryId}")
     public ResponseEntity<Category> getCategory(@PathVariable("categoryId") int categoryId) throws CategoryException{
         Category category = catSer.viewCategory(categoryId);
         return new ResponseEntity<Category>(category, HttpStatus.OK);
     }
 
 
-    @GetMapping("/remove/{id}")
+    @GetMapping("/removeCategory/{id}")
     public String removeCategory(
             @PathVariable int id,
             RedirectAttributes attributes
@@ -246,7 +246,7 @@ public class AdminController {
             e.printStackTrace();
             attributes.addAttribute("message", e.getMessage());
         }
-        return "redirect:/viewall";
+        return "redirect:/list-categories";
     }
 
 

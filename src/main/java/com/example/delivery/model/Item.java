@@ -19,11 +19,11 @@ public class Item {
     @Column(name = "Cost")
     private Double cost;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "category_id")
     private Category category;
 

@@ -1,25 +1,31 @@
 package com.example.delivery.authcontroller;
 
 import com.example.delivery.authexceptions.AuthorizationException;
+import com.example.delivery.authmodels.LogInModel;
 import com.example.delivery.authmodels.SignUpModel;
 import com.example.delivery.authservice.SignUpModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller()
 public class SignUpController {
 	
 	@Autowired
 	private SignUpModelService signUpService;
-	
-	@PostMapping("/signUp")
-	public ResponseEntity<SignUpModel> createNewSignUpHandler(@RequestBody SignUpModel newSignUp) throws AuthorizationException {
-		
-		SignUpModel newSignedUp =signUpService.newSignUp(newSignUp);
-		return new ResponseEntity<SignUpModel>(newSignedUp,HttpStatus.CREATED);
+	@GetMapping("/register")
+	public String registerPage(Model model) {
+		model.addAttribute("registered", new SignUpModel());
+		return "auth/register"; // Assuming "register" is the name of your register page
+	}
 
+	@PostMapping("/register")
+	public ResponseEntity<SignUpModel> createNewSignUpHandler(@ModelAttribute SignUpModel newSignUp) throws AuthorizationException {
+		SignUpModel newSignedUp = signUpService.newSignUp(newSignUp);
+		return new ResponseEntity<>(newSignedUp, HttpStatus.CREATED);
 	}
 	
 	
@@ -32,5 +38,6 @@ public class SignUpController {
 		
 	
 	}
+
 
 }

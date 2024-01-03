@@ -1,10 +1,11 @@
 
+
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Aprycot | Restaurant Management Admin Template</title>
+    <title>Aprycot | Responsive Bootstrap 5 Admin Dashboard Template</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
@@ -12,12 +13,10 @@
     <!-- Library / Plugin Css Build -->
     <link rel="stylesheet" th:href="@{/assets/css/core/libs.min.css}" />
 
-
     <!-- Custom Css -->
-    <link th:href="@{/assets/css/aprycot.min.css?v=1.0.0}" rel="stylesheet" />
-</head>
-<body class="  "  style="background:url(../assets/images/dashboard.png);    background-attachment: fixed;
-    background-size: cover;">
+    <link rel="stylesheet" th:href="@{/assets/css/aprycot.min.css?v=1.0.0}" />
+    >  </head>
+<body class=" " data-bs-spy="scroll" data-bs-target="#elements-section" data-bs-offset="0" tabindex="0">
 <!-- loader Start -->
 <div id="loading">
     <div class="loader simple-loader">
@@ -485,64 +484,75 @@
         </svg>
     </div>    </div>
 <!-- loader END -->
-<div class="position-relative">
-    <div class="user-img1">
-        <svg width="1857"  viewBox="0 0 1857 327" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4.05078 189.348C86.8841 109.514 348.951 -25.2523 734.551 74.3477C1120.15 173.948 1641.22 91.181 1853.55 37.3477" stroke="#EA6A12" stroke-opacity="0.3"/>
-            <path d="M0.99839 152.331C90.9502 80.6133 364.495 -28.9952 739.062 106.31C1113.63 241.616 1640.16 208.056 1856.6 174.363" stroke="#EA6A12" stroke-opacity="0.3"/>
-        </svg>
-    </div>
-</div>
-<div th:replace="admin/fragments/sidebar :: sidebar"> </div>
 
-<!-- Inside your HTML/Thymeleaf file -->
-<main class="main-content">
-    <div class="position-relative">
-        <!--Nav Start-->
-        <div th:replace="admin/fragments/header :: header"> </div>
-        <!--Nav End-->
-    </div>
-    <div class="content-inner mt-5 py-0">
-        <div class="bd-example table-responsive">
-            <div class = "row">
-                <h1> List Categories </h1>
-            </div>
+<div class="wrapper">
+    <section class="container-fluid bg-circle-login" id="auth-sign">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-lg-7 col-xl-4">
+                <div class="card-body">
+                    <a th:href="@{/dashboard/}">
+                        <img th:src="@{/assets/images/favicon.png}" class="img-fluid logo-img" alt="img4">
+                    </a>
 
-            <div class = "row">
-                <div class = "col-lg-3">
-                    <a th:href = "@{/admin/addCategory}" class = "btn btn-primary btn-sm mb-3"> Add Category</a>
+                    </a>
+                    <h2 class="mb-2 text-center">Sign In</h2>
+                    <p class="text-center">Sign in to stay connected.</p>
+                    <form>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control form-control-sm" id="email" aria-describedby="email" placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control form-control-sm" id="password" aria-describedby="password" placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 d-flex justify-content-between">
+                                <div class="form-check mb-3">
+                                    <input type="checkbox" class="form-check-input" id="customCheck1">
+                                    <label class="form-check-label" for="customCheck1">Remember Me</label>
+                                </div>
+                                <a th:href="@{/login/recoverpw.html}">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" onclick="loginHandler()" class="btn btn-primary">Sign In</button>
+                        </div>
+                        <p class="text-center my-3">or sign in with other accounts?</p>
+                        <div class="d-flex justify-content-center">
+                            <ul class="list-group list-group-horizontal list-group-flush">
+                                <li class="list-group-item border-0 pb-0">
+                                    <!-- Example image paths updated for Thymeleaf usage -->
+                                    <a href="#"><img th:src="@{/assets/images/brands/fb.svg}" alt="fb"></a>
+                                <li class="list-group-item border-0 pb-0">
+                                    <a href="#"><img th:src="@{/assets/images/brands/gm.svg}" alt="gm"></a>
+                                </li>
+                                <li class="list-group-item border-0 pb-0">
+                                    <a href="#"><img th:src="@{/assets/images/brands/im.svg}" alt="im"></a>
+                                </li>
+                                <li class="list-group-item border-0 pb-0">
+                                    <a href="#"><img th:src="@{/assets/images/brands/li.svg}" alt="li"></a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <p class="mt-3 text-center">
+                            Don’t have an account? <a href="" onclick="registerPage()" class="text-underline">Click here to sign up.</a>
+                        </p>
+                    </form>
                 </div>
             </div>
-            <table class ="table table-hover">
-                <thead class = "form-control-color">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col"> Category Name</th>
-                    <th scope="col"> Actions </th>
-                </tr>
-                </thead>
+            <div class="col-md-12 col-lg-5 col-xl-8 d-lg-block d-none vh-100 overflow-hidden">
+                <img src="../../assets/images/auth/09.png" class="img-fluid sign-in-img" alt="images">
 
-                <tbody>
-                <tr th:each = "category: ${categories}">
-                    <td th:text="${category.getid()}"></td>
-                    <td th:text = "${category.categoryName}"></td>
-                    <td>
-                        <a th:href="@{/admin/categories/edit-category.html(categoryId=${category.getId()})}" class = "btn btn-primary">Update</a>
-                        <a th:href="@{/admin/removeCategory/{id}(id=${category.getid()})}" class="btn btn-danger">Delete</a>
-
-                    </td>
-                </tr>
-                </tbody>
-
-            </table>
+            </div>
         </div>
-    </div>
-    <!-- Footer Section Start -->
-    <!-- Footer Section End -->
-</main>
-
-<!-- Wrapper End-->
-<!-- offcanvas start -->
+    </section>
+</div>
 
 <!-- Required Library Bundle Script -->
 <script th:src="@{/assets/js/core/libs.min.js}"></script>
@@ -561,5 +571,5 @@
 
 <!-- moment JavaScript -->
 <script th:src="@{/assets/vendor/moment.min.js}"></script>
-</body>
+  </body>
 </html>
