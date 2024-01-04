@@ -21,14 +21,15 @@ public class CustomerServiceController {
 	@GetMapping("/add")
 	public String addPage(Model model) {
 		model.addAttribute("customer", new Customer());
-		return "addCust";
+		return "add-order"; // This will render your HTML form
 	}
 
 	@PostMapping("/add")
 	public String addCustomer(@ModelAttribute Customer customer) throws CustomerException {
 		Customer newCustomer = customerService.addCustomer(customer);
-		return "redirect:/customer/viewall";
+		return "redirect:/customer/viewall"; // Redirects to view all customers after adding
 	}
+
 
 	@GetMapping("/viewall")
 	public String listCustomers(Model model) throws CustomerException{

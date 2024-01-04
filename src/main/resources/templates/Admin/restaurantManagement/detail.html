@@ -498,59 +498,35 @@
     </div>
     <div class="content-inner mt-5 py-0">
         <div class="bd-example">
-            <h2 class="mb-4">Edit Restaurant</h2>
+            <h2 class="mb-4">Restaurant Details</h2>
 
-            <form th:action="@{/admin/updateRestaurant}" method="post" th:object="${restaurant}" class="mb-4">
-                <div class="mb-3">
-                    <input type="hidden" th:field="*{id}"/>
+            <div th:if="${restaurant != null}" class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Restaurant ID: <span th:text="${restaurant.getid()}"></span></h5>
+                    <p class="card-text"><strong>Restaurant Name:</strong> <span th:text="${restaurant.restaurantName}"></span></p>
+                    <p class="card-text"><strong>Manager Name:</strong> <span th:text="${restaurant.managerName}"></span></p>
+                    <p class="card-text"><strong>Contact Number:</strong> <span th:text="${restaurant.contactNumber}"></span></p>
 
-                    <label class="form-label">Restaurant Name:</label>
-                    <input type="text" th:field="*{restaurantName}" class="form-control" />
-                </div>
+                    <!-- Address Details -->
+                    <h3 class="mt-4 mb-3">Address</h3>
+                    <p class="card-text"><strong>Street:</strong> <span th:text="${restaurant.address.area}"></span></p>
+                    <p class="card-text"><strong>City:</strong> <span th:text="${restaurant.address.city}"></span></p>
+                    <p class="card-text"><strong>State:</strong> <span th:text="${restaurant.address.state}"></span></p>
+                    <p class="card-text"><strong>Zip Code:</strong> <span th:text="${restaurant.address.pincode}"></span></p>
 
-                <div class="mb-3">
-                    <label class="form-label">Manager Name:</label>
-                    <input type="text" th:field="*{managerName}" class="form-control" />
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Contact Number:</label>
-                    <input type="text" th:field="*{contactNumber}" class="form-control" />
-                </div>
-
-                <!-- Address fields -->
-                <div class="mb-3">
-                    <label class="form-label">Address:</label>
+                    <!-- Item List Details -->
+                    <h3 class="mt-4 mb-3">Items</h3>
                     <ul class="list-group">
-                        <li class="list-group-item">
-                            <label class="form-label">Street:</label>
-                            <input type="text" th:field="*{address.area}" class="form-control" />
-                        </li>
-                        <li class="list-group-item">
-                            <label class="form-label">City:</label>
-                            <input type="text" th:field="*{address.city}" class="form-control" />
-                        </li>
-                        <li class="list-group-item">
-                            <label class="form-label">State:</label>
-                            <input type="text" th:field="*{address.state}" class="form-control" />
-                        </li>
-                        <li class="list-group-item">
-                            <label class="form-label">Zip Code:</label>
-                            <input type="text" th:field="*{address.pincode}" class="form-control" />
+                        <li th:each="item : ${restaurant.itemList}" class="list-group-item">
+                            <p class="card-text"><strong>Quantity:</strong> <span th:text="${item.quantity}"></span></p>
+                            <p class="card-text"><strong>Cost:</strong> <span th:text="${item.cost}"></span></p>
+                            <p class="card-text"><strong>Category Name:</strong> <span th:text="${item.category.categoryName}"></span></p>
                         </li>
                     </ul>
                 </div>
+            </div>
 
 
-                <!-- Item List -->
-                <div th:each="item : ${allItems}">
-                    <input type="checkbox" th:id="'item_' + ${item.getid()}" th:name="'itemList'" th:value="${item.getid()}"
-                           th:checked="${restaurant.itemList.contains(item)}"/>
-                    <label th:for="'item_' + ${item.getid()}" th:text="${item.itemName}"></label><br/>
-                </div>
-
-                <button type="submit" class="btn btn-primary" >Update Restaurant</button>
-            </form>
 
         </div>
     </div>

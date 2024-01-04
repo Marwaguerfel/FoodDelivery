@@ -11,6 +11,7 @@
 
     <!-- Library / Plugin Css Build -->
     <link rel="stylesheet" th:href="@{/assets/css/core/libs.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 
     <!-- Custom Css -->
@@ -493,7 +494,6 @@
         </svg>
     </div>
 </div>
-<div th:replace="admin/fragments/sidebar :: sidebar"> </div>
 
 <main class="main-content">
     <div class="position-relative">
@@ -568,44 +568,13 @@
                     <div class="card-body">
                         <div class="swiper-container d-slider2">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="card active category-menu">
-                                        <div class="card-body">
-                                            <div class="text-center">
-                                                <img th:src="@{/assets/images/layouts/1.png}" alt="header" class="img-fluid rounded-pill mb-3">
-                                                <h6 class="heading-title fw-bolder pb-4">Pizza</h6>
-                                                <div class="category-icon pt-4">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect width="24" height="24" rx="12" fill="#fff"/>
-                                                        <path d="M10.25 8.5L13.75 12L10.25 15.5" stroke="#EA6A12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="card category-menu">
-                                        <div class="card-body">
-                                            <div class="text-center iq-menu-category">
-                                                <img th:src="@{/assets/images/layouts/2.png}" alt="header" class="img-fluid rounded-pill mb-3">
-                                                <h6 class="heading-title fw-bolder pb-4">Fruits</h6>
-                                                <div class="category-icon pt-4">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect width="24" height="24" rx="12" fill="currentColor"/>
-                                                        <path d="M10.25 8.5L13.75 12L10.25 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="card category-menu">
+
+                                <div class="swiper-slide"  th:each="category : ${categories}">
+                                    <div class="card category-menu" th:onclick="'filterItemsByCategory(' + ${restaurant.getid} + ',' + ${category.getid} + ')'">
                                         <div class="card-body">
                                             <div class="text-center iq-menu-category">
                                                 <img th:src="@{/assets/images/layouts/3.png}" alt="header" class="img-fluid rounded-pill mb-3">
-                                                <h6 class="heading-title fw-bolder pb-4">Snacks</h6>
+                                                <h6 class="heading-title fw-bolder pb-4" th:text="${category.categoryName}"></h6>
                                                 <div class="category-icon pt-4">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <rect width="24" height="24" rx="12" fill="currentColor"/>
@@ -616,98 +585,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="card category-menu">
-                                        <div class="card-body">
-                                            <div class="text-center iq-menu-category">
-                                                <img th:src="@{/assets/images/layouts/4.png}" alt="header" class="img-fluid rounded-pill mb-3">
-                                                <h6 class="heading-title fw-bolder pb-4">Veggie</h6>
-                                                <div class="category-icon pt-4">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect width="24" height="24" rx="12" fill="currentColor"/>
-                                                        <path d="M10.25 8.5L13.75 12L10.25 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="card category-menu">
-                                        <div class="card-body">
-                                            <div class="text-center iq-menu-category">
-                                                <img th:src="@{/assets/images/layouts/5.png}" alt="header" class="img-fluid rounded-pill mb-3">
-                                                <h6 class="heading-title fw-bolder pb-4">Hotdog</h6>
-                                                <div class="category-icon pt-4">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect width="24" height="24" rx="12" fill="currentColor"/>
-                                                        <path d="M10.25 8.5L13.75 12L10.25 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="card category-menu">
-                                        <div class="card-body">
-                                            <div class="text-center iq-menu-category">
-                                                <img th:src="@{/assets/images/layouts/6.png}" alt="header" class="img-fluid rounded-pill mb-3">
-                                                <h6 class="heading-title fw-bolder pb-4">Burger</h6>
-                                                <div class="category-icon pt-4">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect width="24" height="24" rx="12" fill="currentColor"/>
-                                                        <path d="M10.25 8.5L13.75 12L10.25 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="card category-menu">
-                                        <div class="card-body">
-                                            <div class="text-center iq-menu-category">
-                                                <img th:src="@{/assets/images/layouts/7.png}" alt="header" class="img-fluid rounded-pill mb-3">
-                                                <h6 class="heading-title fw-bolder pb-4">Drink</h6>
-                                                <div class="category-icon pt-4">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect width="24" height="24" rx="12" fill="currentColor"/>
-                                                        <path d="M10.25 8.5L13.75 12L10.25 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="card category-menu">
-                                        <div class="card-body">
-                                            <div class="text-center iq-menu-category">
-                                                <img th:src="@{/assets/images/layouts/1.png}" alt="header" class="img-fluid rounded-pill mb-3">
-                                                <h6 class="heading-title fw-bolder pb-4">Pizza</h6>
-                                                <div class="category-icon pt-4">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect width="24" height="24" rx="12" fill="currentColor"/>
-                                                        <path d="M10.25 8.5L13.75 12L10.25 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                         <div class="col-xl-12 col-lg-12 dish-card-horizontal mt-2">
                             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4">
-                                <div class="col active">
-                                    <div  th:each="item : ${items}" class="card card-white dish-card profile-img mb-0 index">
+                                <div id="itemsContainer" class="col active" th:each="item : ${items}">
+                                    <div   class="card card-white dish-card profile-img mb-0 index">
                                         <div class="profile-img21">
                                             <img th:src="@{/assets/images/layouts/16.png}" class="img-fluid rounded-pill avatar-170 blur-shadow position-bottom" alt="profile-image">
                                             <img th:src="@{/assets/images/layouts/16.png}" class="img-fluid rounded-pill avatar-170" alt="profile-image">
 
                                         </div>
-                                        <div class="card-body menu-image">
+                                        <div    class="card-body menu-image add-to-cart-btn" >
                                             <h6 th:text="${item.itemName}" class="heading-title fw-bolder mt-4 mb-0"></h6>
                                             <div class="card-rating stars-ratings">
 
@@ -735,7 +625,8 @@
                                                 <div class="d-flex align-items-center">
                                                     <span class="text-primary fw-bolder me-2"  th:text="${item.cost}"></span>
                                                 </div>
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                                                <svg class="add-to-cart-btn" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <rect class="circle-1" width="24" height="24" rx="12" fill="currentColor"/>
                                                     <rect class="circle-2" x="11.168" y="7" width="1.66667" height="10" rx="0.833333" fill="currentColor"/>
                                                     <rect class="circle-3" x="7" y="12.834" width="1.66666" height="10" rx="0.833332" transform="rotate(-90 7 12.834)" fill="currentColor"/>
@@ -1238,120 +1129,10 @@
                                 <h4 class="list-main">My Cart</h4>
                             </div>
                             <div class="card-body">
-                                <div class="rounded-pill bg-soft-primary iq-my-cart">
-                                    <div class="d-flex align-items-center justify-content-between profile-img4">
-                                        <div class="profile-img11">
-                                            <img th:src="@{/assets/images/layouts/13.png}" class="img-fluid rounded-pill avatar-115 blur-shadow position-end" alt="img">
-                                            <img th:src="@{/assets/images/layouts/13.png}" class="img-fluid rounded-pill avatar-115" alt="img">
-
-                                        </div>
-                                        <div class="d-flex align-items-center profile-content">
-                                            <div>
-                                                <h6 class="mb-1 heading-title fw-bolder">Chinese Pizza</h6>
-                                                <span class="d-flex align-items-center "><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <rect x="0.875" y="2.05469" width="1.66667" height="10" rx="0.833333" transform="rotate(-45 0.875 2.05469)" fill="#EA6A12"/>
-                                 <rect x="2.05469" y="9.125" width="1.66666" height="10" rx="0.833332" transform="rotate(-135 2.05469 9.125)" fill="#EA6A12"/>
-                                 </svg><small class="text-dark ms-1">1</small>
-                              </span>
-                                            </div>
-                                        </div>
-                                        <div class="me-4 text-end">
-                           <span class="mb-1">
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path opacity="0.4" d="M19.6449 9.48924C19.6449 9.55724 19.112 16.298 18.8076 19.1349C18.6169 20.8758 17.4946 21.9318 15.8111 21.9618C14.5176 21.9908 13.2514 22.0008 12.0055 22.0008C10.6829 22.0008 9.38936 21.9908 8.1338 21.9618C6.50672 21.9228 5.38342 20.8458 5.20253 19.1349C4.88936 16.288 4.36613 9.55724 4.35641 9.48924C4.34668 9.28425 4.41281 9.08925 4.54703 8.93126C4.67929 8.78526 4.86991 8.69727 5.07026 8.69727H18.9408C19.1402 8.69727 19.3211 8.78526 19.464 8.93126C19.5973 9.08925 19.6644 9.28425 19.6449 9.48924" fill="#E60A0A"/>
-                              <path d="M21 5.97686C21 5.56588 20.6761 5.24389 20.2871 5.24389H17.3714C16.7781 5.24389 16.2627 4.8219 16.1304 4.22692L15.967 3.49795C15.7385 2.61698 14.9498 2 14.0647 2H9.93624C9.0415 2 8.26054 2.61698 8.02323 3.54595L7.87054 4.22792C7.7373 4.8219 7.22185 5.24389 6.62957 5.24389H3.71385C3.32386 5.24389 3 5.56588 3 5.97686V6.35685C3 6.75783 3.32386 7.08982 3.71385 7.08982H20.2871C20.6761 7.08982 21 6.75783 21 6.35685V5.97686Z" fill="#E60A0A"/>
-                              </svg>
-                           </span>
-                                            <p class="mb-0 text-dark">$7.49</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rounded-pill bg-soft-primary iq-my-cart">
-                                    <div class="d-flex align-items-center justify-content-between profile-img4 mt-4">
-                                        <div class="profile-img11">
-                                            <<img src="../assets/images/layouts/12.png" class="img-fluid rounded-pill avatar-115 blur-shadow position-end" alt="img">
-                                            <img src="../assets/images/layouts/12.png" class="img-fluid rounded-pill avatar-115" alt="img">
-
-                                        </div>
-                                        <div class="d-flex align-items-center profile-content">
-                                            <div>
-                                                <h6 class="mb-1 heading-title fw-bolder">Italian Pizza</h6>
-                                                <span class="d-flex align-items-center "><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <rect x="0.875" y="2.05469" width="1.66667" height="10" rx="0.833333" transform="rotate(-45 0.875 2.05469)" fill="#EA6A12"/>
-                                 <rect x="2.05469" y="9.125" width="1.66666" height="10" rx="0.833332" transform="rotate(-135 2.05469 9.125)" fill="#EA6A12"/>
-                                 </svg><small class="text-dark ms-1">1</small>
-                              </span>
-                                            </div>
-                                        </div>
-                                        <div class="me-4 text-end">
-                           <span class="mb-1">
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path opacity="0.4" d="M19.6449 9.48924C19.6449 9.55724 19.112 16.298 18.8076 19.1349C18.6169 20.8758 17.4946 21.9318 15.8111 21.9618C14.5176 21.9908 13.2514 22.0008 12.0055 22.0008C10.6829 22.0008 9.38936 21.9908 8.1338 21.9618C6.50672 21.9228 5.38342 20.8458 5.20253 19.1349C4.88936 16.288 4.36613 9.55724 4.35641 9.48924C4.34668 9.28425 4.41281 9.08925 4.54703 8.93126C4.67929 8.78526 4.86991 8.69727 5.07026 8.69727H18.9408C19.1402 8.69727 19.3211 8.78526 19.464 8.93126C19.5973 9.08925 19.6644 9.28425 19.6449 9.48924" fill="#E60A0A"/>
-                              <path d="M21 5.97686C21 5.56588 20.6761 5.24389 20.2871 5.24389H17.3714C16.7781 5.24389 16.2627 4.8219 16.1304 4.22692L15.967 3.49795C15.7385 2.61698 14.9498 2 14.0647 2H9.93624C9.0415 2 8.26054 2.61698 8.02323 3.54595L7.87054 4.22792C7.7373 4.8219 7.22185 5.24389 6.62957 5.24389H3.71385C3.32386 5.24389 3 5.56588 3 5.97686V6.35685C3 6.75783 3.32386 7.08982 3.71385 7.08982H20.2871C20.6761 7.08982 21 6.75783 21 6.35685V5.97686Z" fill="#E60A0A"/>
-                              </svg>
-                           </span>
-                                            <p class="mb-0 text-dark">$7.49</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rounded-pill bg-soft-primary iq-my-cart">
-                                    <div class="d-flex align-items-center justify-content-between profile-img4 mt-4">
-                                        <div class="profile-img11">
-                                            <img th:src="@{/assets/images/layouts/11.png}" class="img-fluid rounded-pill avatar-115 blur-shadow position-end" alt="img">
-                                            <img th:src="@{/assets/images/layouts/11.png}" class="img-fluid rounded-pill avatar-115" alt="img">
-
-                                        </div>
-                                        <div class="d-flex align-items-center profile-content">
-                                            <div>
-                                                <h6 class="mb-1 heading-title fw-bolder">Sausage Pizza</h6>
-                                                <span class="d-flex align-items-center "><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <rect x="0.875" y="2.05469" width="1.66667" height="10" rx="0.833333" transform="rotate(-45 0.875 2.05469)" fill="#EA6A12"/>
-                                 <rect x="2.05469" y="9.125" width="1.66666" height="10" rx="0.833332" transform="rotate(-135 2.05469 9.125)" fill="#EA6A12"/>
-                                 </svg><small class="text-dark ms-1">1</small>
-                              </span>
-                                            </div>
-                                        </div>
-                                        <div class="me-4 text-end">
-                           <span class="mb-1">
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path opacity="0.4" d="M19.6449 9.48924C19.6449 9.55724 19.112 16.298 18.8076 19.1349C18.6169 20.8758 17.4946 21.9318 15.8111 21.9618C14.5176 21.9908 13.2514 22.0008 12.0055 22.0008C10.6829 22.0008 9.38936 21.9908 8.1338 21.9618C6.50672 21.9228 5.38342 20.8458 5.20253 19.1349C4.88936 16.288 4.36613 9.55724 4.35641 9.48924C4.34668 9.28425 4.41281 9.08925 4.54703 8.93126C4.67929 8.78526 4.86991 8.69727 5.07026 8.69727H18.9408C19.1402 8.69727 19.3211 8.78526 19.464 8.93126C19.5973 9.08925 19.6644 9.28425 19.6449 9.48924" fill="#E60A0A"/>
-                              <path d="M21 5.97686C21 5.56588 20.6761 5.24389 20.2871 5.24389H17.3714C16.7781 5.24389 16.2627 4.8219 16.1304 4.22692L15.967 3.49795C15.7385 2.61698 14.9498 2 14.0647 2H9.93624C9.0415 2 8.26054 2.61698 8.02323 3.54595L7.87054 4.22792C7.7373 4.8219 7.22185 5.24389 6.62957 5.24389H3.71385C3.32386 5.24389 3 5.56588 3 5.97686V6.35685C3 6.75783 3.32386 7.08982 3.71385 7.08982H20.2871C20.6761 7.08982 21 6.75783 21 6.35685V5.97686Z" fill="#E60A0A"/>
-                              </svg>
-                           </span>
-                                            <p class="mb-0 text-dark">$7.49</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rounded-pill bg-soft-primary iq-my-cart">
-                                    <div class="d-flex align-items-center justify-content-between profile-img4 mt-4">
-                                        <div class="profile-img11">
-                                            <img th:src="@{/assets/images/layouts/13.png}" class="img-fluid rounded-pill avatar-115 blur-shadow position-end" alt="img">
-                                            <img th:src="@{/assets/images/layouts/13.png}" class="img-fluid rounded-pill avatar-115" alt="img">
-
-                                        </div>
-                                        <div class="d-flex align-items-center profile-content">
-                                            <div>
-                                                <h6 class="mb-1 heading-title fw-bolder">Cheese Pizza</h6>
-                                                <span class="d-flex align-items-center "><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <rect x="0.875" y="2.05469" width="1.66667" height="10" rx="0.833333" transform="rotate(-45 0.875 2.05469)" fill="#EA6A12"/>
-                                 <rect x="2.05469" y="9.125" width="1.66666" height="10" rx="0.833332" transform="rotate(-135 2.05469 9.125)" fill="#EA6A12"/>
-                                 </svg><small class="text-dark ms-1">1</small>
-                              </span>
-                                            </div>
-                                        </div>
-                                        <div class="me-4 text-end">
-                           <span class="mb-1">
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path opacity="0.4" d="M19.6449 9.48924C19.6449 9.55724 19.112 16.298 18.8076 19.1349C18.6169 20.8758 17.4946 21.9318 15.8111 21.9618C14.5176 21.9908 13.2514 22.0008 12.0055 22.0008C10.6829 22.0008 9.38936 21.9908 8.1338 21.9618C6.50672 21.9228 5.38342 20.8458 5.20253 19.1349C4.88936 16.288 4.36613 9.55724 4.35641 9.48924C4.34668 9.28425 4.41281 9.08925 4.54703 8.93126C4.67929 8.78526 4.86991 8.69727 5.07026 8.69727H18.9408C19.1402 8.69727 19.3211 8.78526 19.464 8.93126C19.5973 9.08925 19.6644 9.28425 19.6449 9.48924" fill="#E60A0A"/>
-                              <path d="M21 5.97686C21 5.56588 20.6761 5.24389 20.2871 5.24389H17.3714C16.7781 5.24389 16.2627 4.8219 16.1304 4.22692L15.967 3.49795C15.7385 2.61698 14.9498 2 14.0647 2H9.93624C9.0415 2 8.26054 2.61698 8.02323 3.54595L7.87054 4.22792C7.7373 4.8219 7.22185 5.24389 6.62957 5.24389H3.71385C3.32386 5.24389 3 5.56588 3 5.97686V6.35685C3 6.75783 3.32386 7.08982 3.71385 7.08982H20.2871C20.6761 7.08982 21 6.75783 21 6.35685V5.97686Z" fill="#E60A0A"/>
-                              </svg>
-                           </span>
-                                            <p class="mb-0 text-dark">$7.49</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mt-5">
-                                    <a type="button" th:href="@{/dashboard/special-pages/add-to-cart.html}" class="btn btn-primary rounded-pill">Checkout</a>
+                                <div id="cart-items" class="cart-container">
+                                    <!-- Added items will go here -->
+                                </div>                                <div class="text-center mt-5">
+                                    <a type="button"  id="btn-checkout" class="btn btn-primary rounded-pill">Checkout</a>
                                 </div>
                             </div>
                         </div>
@@ -1371,17 +1152,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <div class="iq-col-masonry m-0">
-                                    <button type="button" class="btn btn-primary rounded iq-col-masonry-block">Burgers</button>
-
-                                </div>
+                            <div class="iq-col-masonry m-0" th:each="category : ${categories}">
+                                <button type="button" class="btn btn-primary rounded iq-col-masonry-block" th:text="${category.categoryName}"></button>
+                                <!-- You can add onclick or href attribute as needed for each button -->
                             </div>
+                        </div>
 
-                        </div>
-                        <div class="position-relative">
-                            <img src="@{/assets/images/layouts/40.png}" alt="img-1" class="img-fluid img-user">
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1402,21 +1178,45 @@
                   </span> by <a href="https://iqonic.design/">IQONIC Design</a>.
             </div>
         </div>
-        <h3>Items:</h3>
-        <ul>
-            <!-- Iterate through the items and display them -->
-            <li th:each="item : ${items}">
-                <!-- Access and display item details -->
-                <span th:text="${item. item.getCost()}"></span>
-                <span th:text="${item. item.getCost()}"></span>
-                <!-- Display other item details as needed -->
-            </li>
-        </ul>
+
+
+
 
     </footer>
     <!-- Footer Section End -->    </main>
 <!-- Wrapper End-->
 <!-- offcanvas start -->
+<script th:inline="javascript">
+    function filterItemsByCategory(restaurantId, categoryId) {
+        fetch(`/oneRestaurant/${restaurantId}/filterItemsByCategory?categoryId=${categoryId}`)
+            .then(response => response.json())
+            .then(items => {
+                const container = document.getElementById('itemsContainer');
+                container.innerHTML = '';  // Clear current items
+
+                // Append new items
+                items.forEach(item => {
+                    const itemHtml = `
+                        <div class="col">
+                            <div class="card card-white dish-card profile-img mb-0 index">
+                                <div class="profile-img21">
+                                    <!-- Item images here -->
+                                </div>
+                                <div class="card-body menu-image">
+                                    <h6 class="heading-title fw-bolder mt-4 mb-0">${item.itemName}</h6>
+                                    <!-- Add other item details here -->
+                                    <span class="text-primary fw-bolder me-2">$${item.cost}</span>
+                                </div>
+                            </div>
+                        </div>`;
+                    container.innerHTML += itemHtml;
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+
+
 
 <!-- Required Library Bundle Script -->
 <script th:src="@{/assets/js/core/libs.min.js}"></script>
@@ -1435,5 +1235,97 @@
 
 <!-- moment JavaScript -->
 <script th:src="@{/assets/vendor/moment.min.js}"></script>
+<script>
+const cart = {};
+function addToCart(itemId, itemName, itemPrice) {
+    // Check if the cart already contains the item; if so, increase its quantity, otherwise add it to the cart
+    if (cart[itemId]) {
+        cart[itemId].quantity += 1;
+    } else {
+        cart[itemId] = {
+            name: itemName,
+            price: parseFloat(itemPrice),
+            quantity: 1
+        };
+    }
+    const cartItemDiv = document.createElement('div');
+    cartItemDiv.classList.add('card-body', 'rounded-pill', 'bg-soft-primary', 'iq-my-cart');
+
+    cartItemDiv.innerHTML =
+         `
+        <div class="d-flex align-items-center justify-content-between profile-img4">
+            <div class="profile-img11">
+                <!-- Static image placeholders -->
+                <img src="/assets/images/layouts/13.png" class="img-fluid rounded-pill avatar-115 blur-shadow position-end" alt="img">
+                <img src="/assets/images/layouts/13.png" class="img-fluid rounded-pill avatar-115" alt="img">
+            </div>
+            <div class="d-flex align-items-center profile-content">
+                <div>
+                    <h6 class="mb-1 heading-title fw-bolder">${itemName}</h6>
+                    <span class="d-flex align-items-center">
+                        <!-- SVG and quantity -->
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0.875" y="2.05469" width="1.66667" height="10" rx="0.833333" transform="rotate(-45 0.875 2.05469)" fill="#EA6A12"/>
+                            <rect x="2.05469" y="9.125" width="1.66666" height="10" rx="0.833332" transform="rotate(-135 2.05469 9.125)" fill="#EA6A12"/>
+                        </svg>
+                        <small class="text-dark ms-1">1</small>
+                    </span>
+                </div>
+            </div>
+            <div class="me-4 text-end">
+                <p class="mb-0 text-dark">$${itemPrice}</p>
+            </div>
+        </div>
+    `;
+
+    // Append the new cart item to the cart container
+    document.getElementById('cart-items').appendChild(cartItemDiv);
+}
+
+
+function proceedToCheckout() {
+    // Create a query string of cart items for checkout URL
+    const cartQueryString = Object.entries(cart).map(([id, details]) =>
+        `item=${id}&quantity=${details.quantity}`
+    ).join('&');
+
+    // Check if the cart is not empty before redirecting to the checkout page
+    if (cartQueryString !== '') {
+        window.location.href = `/cart/order?${cartQueryString}`;
+    } else {
+        console.error('Cart is empty. Add items before proceeding to checkout.');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('click', function(event) {
+        if (event.target.closest('.add-to-cart-btn')) {
+            const btn = event.target.closest('.add-to-cart-btn');
+            const itemElement = btn.closest('.card-body.menu-image');
+
+            if (itemElement) {
+                // Extract item details from the clicked element
+                const itemName = itemElement.querySelector('h6').textContent.trim();
+                const itemPriceText = itemElement.querySelector('.text-primary').textContent.trim();
+                const itemPrice = itemPriceText.replace(/^\$/, '');
+
+                const itemId = itemElement.getAttribute('data-item-id');
+                addToCart(itemId, itemName, itemPrice);
+            } else {
+                console.error('Item element not found.');
+            }
+        }
+    });
+
+    const checkoutButton = document.getElementById('btn-checkout');
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', function() {
+            proceedToCheckout();
+        });
+    }
+});
+</script>
+
+
 </body>
 </html>

@@ -77,7 +77,16 @@ public class ItemServiceImpl implements ItemService{
 			throw new ItemException("No Item exists..");
 		}
 	}
-	
-	
+	@Override
 
+	public List<Item> getItemsByCategoryId(int categoryId) {
+		return itemRepo.findByCategoryId(categoryId);
+	}
+	@Override
+
+	public List<Item> getItemsByRestaurantAndCategoryId(int restaurantId, int categoryId) {
+		// Implement logic to fetch items for a specific restaurant and category
+		// This could involve a custom query in your repository.
+		return itemRepo.findByRestaurantIdAndCategoryId(restaurantId, categoryId);
+	}
 }

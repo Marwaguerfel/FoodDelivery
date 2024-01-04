@@ -532,9 +532,9 @@
                         <!-- Add other address fields as needed -->
                     </td>
                     <td>
-                        <a th:href ="@{/restaurant/edit(restaurantId=${restaurant.getid()})}" class = "btn btn-primary">Update</a>
-                        <a th:href="@{/restaurant/view/{restaurantId}(restaurantId=${restaurant.getid()})}" class="btn btn-dark">view</a>
-                        <a th:href="@{/restaurant/remove/{id}(id=${restaurant.getid()})}" class="btn btn-danger">Delete</a>
+                        <a th:href ="@{/admin/updateRestaurant(restaurantId=${restaurant.getid()})}" class = "btn btn-primary">Update</a>
+                        <a th:href="@{/admin/view/{restaurantId}(restaurantId=${restaurant.getid()})}" class="btn btn-dark">view</a>
+                        <a th:href="@{/admin/remove/{id}(id=${restaurant.getid()})}" class="btn btn-danger">Delete</a>
 
 
                     </td>

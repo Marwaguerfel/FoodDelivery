@@ -527,7 +527,7 @@
                     <td th:text="${category.getid()}"></td>
                     <td th:text = "${category.categoryName}"></td>
                     <td>
-                        <a th:href="@{/admin/categories/edit-category.html(categoryId=${category.getId()})}" class = "btn btn-primary">Update</a>
+                        <a th:href="@{/admin/editCategory(categoryId=${category.getid()})}" class = "btn btn-primary">Update</a>
                         <a th:href="@{/admin/removeCategory/{id}(id=${category.getid()})}" class="btn btn-danger">Delete</a>
 
                     </td>

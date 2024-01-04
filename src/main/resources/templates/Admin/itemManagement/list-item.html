@@ -504,12 +504,15 @@
     </div>
     <div class="content-inner mt-5 py-0">
         <div class="bd-example table-responsive">
-            <h2 class="mb-4">Items</h2>
 
+            <h2 class="mb-4">Items</h2>
+            <div class = "col-lg-3">
+                <a th:href = "@{/admin/addItem}" class = "btn btn-primary btn-sm mb-3"> Add Item</a>
+            </div>
             <div th:each="item : ${items}" class="card mb-3">
                 <div class="row g-0">
                     <div class="col-lg-3">
-                        <img th:src="@{'/img/fork.png'}" alt="" class="img-fluid rounded fs-2">
+                        <img th:src="@{'/img/fork.png'}" alt="" class="img-fluid rounded fs-2" style="width:40px">
                     </div>
                     <div class="col-lg-9">
                         <div class="card-body">

@@ -56,7 +56,7 @@ public class AdminController {
         model.addAttribute("restaurants", restaurants);
         return "admin/restaurantManagement/manage-restaurants";
     }
-    @GetMapping("/editRest")
+    @GetMapping("/updateRestaurant")
     public String editRestaurantPage(
             Model model,
             @RequestParam int restaurantId
@@ -68,10 +68,10 @@ public class AdminController {
 
     }
 
-    @PostMapping("/update")
+    @PostMapping("/updateRestaurant")
     public String updateRestaurant(@ModelAttribute("restaurant") Restaurant restaurant) throws RestaurantException {
         Restaurant updatedRestaurant = restService.updateRestaurant(restaurant);
-        return "redirect:/admin/restaurantManagement/restaurants";
+        return "redirect:/admin/restaurants";
     }
 
 
@@ -89,7 +89,7 @@ public class AdminController {
 
         Restaurant restaurant = restService.viewRestaurant(restaurantId);
         model.addAttribute("restaurant", restaurant);
-        return "admin/restaurantManagement/restaurant-detail";
+        return "admin/restaurantManagement/detail";
 
     }
     //item Management section
@@ -146,7 +146,7 @@ public class AdminController {
     @PostMapping("/updateItem")
     public String updateItem(@ModelAttribute("item") Item item) throws ItemException {
         Item updatedItem = itemService.updateItem(item);
-        return "redirect:admin/itemManagement/listItem";
+        return "redirect:/admin/allItem";
     }
 
 
@@ -223,7 +223,7 @@ public class AdminController {
             e.printStackTrace();
             attributes.addAttribute("message", e.getMessage());
         }
-        return "redirect:list-categories";
+        return "redirect:/admin/listCategories";
     }
 
 

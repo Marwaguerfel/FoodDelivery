@@ -497,18 +497,18 @@
                     </a>
                     <h2 class="mb-2 text-center">Sign In</h2>
                     <p class="text-center">Sign in to stay connected.</p>
-                    <form>
+                    <form th:action="@{/login}" th:object="${loginData}" method="post">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control form-control-sm" id="email" aria-describedby="email" placeholder=" ">
+                                    <label for="userName" class="form-label">User Name </label>
+                                    <input type="text" class="form-control form-control-sm" id="userName" aria-describedby="userName" placeholder="User name" th:field="*{userName}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control form-control-sm" id="password" aria-describedby="password" placeholder=" ">
+                                    <input type="password" class="form-control form-control-sm" id="password" aria-describedby="password" placeholder="Password" th:field="*{password}" >
                                 </div>
                             </div>
                             <div class="col-lg-12 d-flex justify-content-between">
@@ -520,7 +520,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button type="submit" onclick="loginHandler()" class="btn btn-primary">Sign In</button>
+                            <button type="submit" class="btn btn-primary">Sign In</button>
                         </div>
                         <p class="text-center my-3">or sign in with other accounts?</p>
                         <div class="d-flex justify-content-center">
@@ -571,5 +571,5 @@
 
 <!-- moment JavaScript -->
 <script th:src="@{/assets/vendor/moment.min.js}"></script>
-  </body>
+</body>
 </html>

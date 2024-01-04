@@ -4,6 +4,7 @@ import com.example.delivery.authexceptions.AuthorizationException;
 import com.example.delivery.exceptions.CartException;
 import com.example.delivery.exceptions.CustomerException;
 import com.example.delivery.exceptions.ItemException;
+import com.example.delivery.model.Customer;
 import com.example.delivery.model.FoodCart;
 import com.example.delivery.model.Item;
 import com.example.delivery.service.CustomerService;
@@ -29,21 +30,24 @@ public class FoodCartServiceController {
 	@Autowired
 	ItemService itemService;
 
-	@GetMapping("/register")
-	public String addPage(Model model) throws CustomerException {
+	@GetMapping("/order")
+	public String addPage(Model model)  {
 		model.addAttribute("cart", new FoodCart());
-		model.addAttribute("customers", custSer.viewall());
-		return "addCart";
+		return "User/add-order";
 	}
 
-	@PostMapping("/register")
+	@PostMapping("/addCart")
 	public String saveCartDetails(@ModelAttribute FoodCart fc) throws CartException, AuthorizationException {
 		FoodCart f = cartService.saveCart(fc);
 		return "redirect:/cart/viewall";
 
 	}
 
-
+	@PostMapping("/addCust")
+	public String addCustomer(@ModelAttribute Customer customer) throws CustomerException {
+		Customer newCustomer = custSer.addCustomer(customer);
+		return "redirect:/cart/order";
+	}
 
 	@GetMapping("/remove/{cartId}")
 	public String removeCart(@PathVariable("cartId") Integer cartId) throws CartException {

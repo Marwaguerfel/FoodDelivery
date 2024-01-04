@@ -488,77 +488,78 @@
 <div class="position-relative">
 
 </div>
-<div th:replace="admin/fragments/sidebar :: sidebar"> </div>
 
 <main class="main-content">
     <div class="position-relative">
         <!--Nav Start-->
         <div th:replace="admin/fragments/header :: header"> </div>
         <!--Nav End-->
-    </div>
-    <div class="content-inner mt-5 py-0">
-        <div class="bd-example">
-            <h2 class="mb-4">Edit Restaurant</h2>
 
-            <form th:action="@{/admin/updateRestaurant}" method="post" th:object="${restaurant}" class="mb-4">
-                <div class="mb-3">
-                    <input type="hidden" th:field="*{id}"/>
+        <div class="container mt-4">
+            <h2>Create Customer</h2>
+            <form th:action="@{cart/add}" th:object="${customer}" method="post">
 
-                    <label class="form-label">Restaurant Name:</label>
-                    <input type="text" th:field="*{restaurantName}" class="form-control" />
+                <!-- Input fields for user properties -->
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" class="form-control" id="fullName" th:field="*{fullName}" required>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Manager Name:</label>
-                    <input type="text" th:field="*{managerName}" class="form-control" />
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" class="form-control" id="age" th:field="*{age}" required>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Contact Number:</label>
-                    <input type="text" th:field="*{contactNumber}" class="form-control" />
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <input type="text" class="form-control" id="gender" th:field="*{gender}" required>
                 </div>
 
-                <!-- Address fields -->
-                <div class="mb-3">
-                    <label class="form-label">Address:</label>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <label class="form-label">Street:</label>
-                            <input type="text" th:field="*{address.area}" class="form-control" />
-                        </li>
-                        <li class="list-group-item">
-                            <label class="form-label">City:</label>
-                            <input type="text" th:field="*{address.city}" class="form-control" />
-                        </li>
-                        <li class="list-group-item">
-                            <label class="form-label">State:</label>
-                            <input type="text" th:field="*{address.state}" class="form-control" />
-                        </li>
-                        <li class="list-group-item">
-                            <label class="form-label">Zip Code:</label>
-                            <input type="text" th:field="*{address.pincode}" class="form-control" />
-                        </li>
-                    </ul>
+                <div class="form-group">
+                    <label for="mobileNumber">Mobile Number:</label>
+                    <input type="text" class="form-control" id="mobileNumber" th:field="*{mobileNumber}" required>
                 </div>
 
-
-                <!-- Item List -->
-                <div th:each="item : ${allItems}">
-                    <input type="checkbox" th:id="'item_' + ${item.getid()}" th:name="'itemList'" th:value="${item.getid()}"
-                           th:checked="${restaurant.itemList.contains(item)}"/>
-                    <label th:for="'item_' + ${item.getid()}" th:text="${item.itemName}"></label><br/>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" class="form-control" id="email" th:field="*{email}" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary" >Update Restaurant</button>
+                <div class="form-group">
+                    <label>Address:</label>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="area">Street:</label>
+                            <input type="text" class="form-control" id="area" th:field="*{address.area}" required>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="city">City:</label>
+                            <input type="text" class="form-control" id="city" th:field="*{address.city}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="state">State:</label>
+                            <input type="text" class="form-control" id="state" th:field="*{address.state}" required>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="pincode">Zip Code:</label>
+                            <input type="text" class="form-control" id="pincode" th:field="*{address.pincode}" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more form fields for the Food Cart as needed -->
+
+                <button type="submit" class="btn btn-primary">Save</button>
             </form>
-
         </div>
     </div>
-    <!-- Footer Section Start -->
+</main>
 
-    <!-- Footer Section End -->    </main>
-<!-- Wrapper End-->
-<!-- offcanvas start -->
 
 <!-- Required Library Bundle Script -->
 <script th:src="@{/assets/js/core/libs.min.js}"></script>

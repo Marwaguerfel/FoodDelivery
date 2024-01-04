@@ -22,13 +22,13 @@ public class SignUpController {
 		return "auth/register"; // Assuming "register" is the name of your register page
 	}
 
+
 	@PostMapping("/register")
-	public ResponseEntity<SignUpModel> createNewSignUpHandler(@ModelAttribute SignUpModel newSignUp) throws AuthorizationException {
+	public String createNewSignUpHandler(@ModelAttribute SignUpModel newSignUp) throws AuthorizationException {
 		SignUpModel newSignedUp = signUpService.newSignUp(newSignUp);
-		return new ResponseEntity<>(newSignedUp, HttpStatus.CREATED);
+		return "redirect:/login";
 	}
-	
-	
+
 	@PutMapping("/updateSignUp")
 	public ResponseEntity<SignUpModel> updateSignUpDetailsHandler(@RequestBody SignUpModel signUp, @RequestParam String key) throws AuthorizationException
 	{

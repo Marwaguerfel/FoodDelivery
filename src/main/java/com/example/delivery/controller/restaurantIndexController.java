@@ -12,9 +12,7 @@ import com.example.delivery.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable; // Import PathVariable
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Controller
@@ -42,17 +40,28 @@ public class restaurantIndexController {
     }
 
     @GetMapping("/{id}")
-    public String Page(@PathVariable int id, Model model) throws RestaurantException, ItemException {
+    public String Page(@PathVariable int id, Model model) throws RestaurantException, ItemException, CategoryException {
         Restaurant restaurant = restaurantService.viewRestaurant(id);
         model.addAttribute("restaurant", restaurant);
-
-        List<Item> items = restaurantService.getItemsByRestaurantId(id);
+        List<Category> categories = catService.viewAllCategory();
+        model.addAttribute("categories", categories);
+        List<Item> items = restaurant.getItemList();
         model.addAttribute("items", items);
+
         // Log the fetched items to inspect them
+        System.out.println("Items: " + items); // Log the entire list
         for (Item item : items) {
-            System.out.println("Item ID: " + item.getid() + ", Item Name: " + item.getItemName() + ", Cost: " + item.getCost());
-            // Log other item details as needed
+            System.out.println("Item ID: " + item.getid() + ", Item Name: " + item.getItemName());
         }
+        Restaurant restD = restaurantService.viewRestaurant(id);
+        model.addAttribute("restaurant", restD);
         return "restaurantPage/restaurantIndex"; // or any specific view for a single restaurant
     }
+    @GetMapping("/{restaurantId}/filterItemsByCategory")
+    @ResponseBody
+    public List<Item> filterItemsByCategory(@PathVariable int restaurantId, @RequestParam("categoryId") int categoryId) throws ItemException {
+        return itemService.getItemsByRestaurantAndCategoryId( categoryId,restaurantId);
+    }
+
+
 }

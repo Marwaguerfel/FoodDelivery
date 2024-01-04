@@ -499,7 +499,7 @@
     <div class="content-inner mt-5 py-0">
         <h2>Update Category</h2>
 
-        <form th:action="@{/category/update}" th:object="${category}" method="post">
+        <form th:action="@{/admin/editCategory}" th:object="${category}" method="post">
             <input type="hidden" th:field="*{id}" />
 
             <label for="name">Category Name:</label>

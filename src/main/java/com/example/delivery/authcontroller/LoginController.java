@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class LoginController {
-	
+
 	@Autowired
 	private LogInModelServiceImpl loginService;
 
@@ -26,23 +26,22 @@ public class LoginController {
 		String loginSuccessful = loginService.LogIn(loginData);
 		if (loginSuccessful != null) {
 			redirectAttributes.addFlashAttribute("loginSuccessful", loginSuccessful);
-			//redirectAttributes.addFlashAttribute("successMessage", "Login successful!");
 			return "redirect:/";
 		} else {
 			redirectAttributes.addFlashAttribute("error", "Invalid username or password");
-			return "redirect:/auth/login";
+			return "redirect:/login";
 		}
 	}
 
 	@GetMapping("/logout")
-	public String logOutFromAccount(@RequestParam String key, RedirectAttributes redirectAttributes) {
+	public String logOutFromAccount(@RequestParam("loginSuccessful") String loginSuccessful, RedirectAttributes redirectAttributes) {
 		try {
-			loginService.LogOut(key);
+			loginService.LogOut(loginSuccessful);
 			redirectAttributes.addFlashAttribute("successMessage", "Logout successful!");
 		} catch (AuthorizationException e) {
 			redirectAttributes.addFlashAttribute("error", "Error during logout: " + e.getMessage());
 		}
-		return "redirect:auth/login";
+		return "redirect:/login";
 	}
 
 

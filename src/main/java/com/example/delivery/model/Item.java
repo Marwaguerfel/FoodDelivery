@@ -1,5 +1,6 @@
 package com.example.delivery.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -21,6 +22,8 @@ public class Item {
 
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "restaurant_id")
+    @JsonIgnore
+
     private Restaurant restaurant;
 
     @ManyToOne(cascade = CascadeType.REMOVE)

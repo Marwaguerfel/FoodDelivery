@@ -19,4 +19,7 @@ public interface ItemService {
 	
 	public List<Item> viewAllItems()throws ItemException;
 
+	List<Item> getItemsByCategoryId(int categoryId);
+
+	List<Item> getItemsByRestaurantAndCategoryId(int restaurantId, int categoryId);
 }
