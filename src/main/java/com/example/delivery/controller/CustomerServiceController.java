@@ -34,7 +34,7 @@ public class CustomerServiceController {
 	public String listCustomers(Model model) throws CustomerException{
 		List<Customer> customers = customerService.viewall();
 		model.addAttribute("customers", customers);
-		return "customerList";
+		return "admin/CustomerList";
 	}
 
 	@GetMapping("/edit")

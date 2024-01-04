@@ -2,6 +2,7 @@ package com.example.delivery.service;
 
 
 import com.example.delivery.exceptions.RestaurantException;
+import com.example.delivery.model.Item;
 import com.example.delivery.model.Restaurant;
 
 import java.util.List;
@@ -20,5 +21,5 @@ public interface RestaurantService {
 
 
 
-
+	List<Item> getItemsByRestaurantId(Integer restaurantId);
 }
