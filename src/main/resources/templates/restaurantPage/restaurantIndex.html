@@ -591,7 +591,7 @@
                         <div class="col-xl-12 col-lg-12 dish-card-horizontal mt-2">
                             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4">
                                 <div id="itemsContainer" class="col active" th:each="item : ${items}">
-                                    <div   class="card card-white dish-card profile-img mb-0 index">
+                                    <div   class="card card-white dish-card profile-img mb-0 index "data-item-id="${item.itemId}">
                                         <div class="profile-img21">
                                             <img th:src="@{/assets/images/layouts/16.png}" class="img-fluid rounded-pill avatar-170 blur-shadow position-bottom" alt="profile-image">
                                             <img th:src="@{/assets/images/layouts/16.png}" class="img-fluid rounded-pill avatar-170" alt="profile-image">
@@ -1282,11 +1282,10 @@ function addToCart(itemId, itemName, itemPrice) {
     document.getElementById('cart-items').appendChild(cartItemDiv);
 }
 
-
 function proceedToCheckout() {
     // Create a query string of cart items for checkout URL
-    const cartQueryString = Object.entries(cart).map(([id, details]) =>
-        `item=${id}&quantity=${details.quantity}`
+    const cartQueryString = Object.keys(cart).map(id =>
+        `item=${id}&quantity=${cart[id].quantity}`
     ).join('&');
 
     // Check if the cart is not empty before redirecting to the checkout page
